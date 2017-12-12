@@ -16,41 +16,19 @@ Game::Game()
 	{
 		error = true;
 	}
-	else//Crea las texturas e entidades
+	else
 	{
-		//Inicializa Texturas
+		//Inicializa Textura del SpriteSheet
 		pacmanText = new Texture();
-		redText = new Texture();
-		orangeText = new Texture();
-		//pinkText = new Texture();
-		blueText = new Texture();
-		purpleText = new Texture();
-
-
-		//Fin
-
-		//Carga texturas
+		//Lo carga
 		pacmanText->load(renderer, "..\\images\\characters1.png", 4, 14);
-		redText->load(renderer, "..\\images\\characters1.png", 4, 14);
-		orangeText->load(renderer, "..\\images\\characters1.png", 4, 14);
-		blueText->load(renderer, "..\\images\\characters1.png", 4, 14);
-		purpleText->load(renderer, "..\\images\\characters1.png", 4, 14);
-
-		//Fin
 
 	}
 }
 Game::~Game()
 {
-	//Borra entidades
+	//Borra el SpriteSheet
 	delete pacmanText;
-	delete redText;
-	delete blueText;
-	delete orangeText;
-	delete purpleText;
-	//Fin
-
-	//delete gamemap;
 
 	//Borra entidades
 	delete pacman;
@@ -59,7 +37,6 @@ Game::~Game()
 	delete blueGhost;
 	delete purpleGhost;
 	delete userinterface;
-	//Fin
 
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
