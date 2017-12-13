@@ -8,6 +8,7 @@ Game::Game()
 	score = 0;
 	winX = winY = 50;
 	SDL_Init(SDL_INIT_EVERYTHING);
+
 	window = SDL_CreateWindow("Pacman", winX, winY, winWidth, winHeight, SDL_WINDOW_SHOWN);
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	//gamemap = new GameMap(20, 20);//Valor de prueba 20x20
@@ -25,6 +26,7 @@ Game::Game()
 		pacmanText->load(renderer, "..\\images\\characters1.png", 4, 14);
 
 	}
+	TTF_Init();
 }
 Game::~Game()
 {

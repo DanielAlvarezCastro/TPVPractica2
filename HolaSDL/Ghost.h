@@ -15,7 +15,6 @@ struct par{//Struct para guardar las direcciones
 };
 
 using namespace std;
-class Game;
 class Ghost: public GameCharacter
 {
 private:

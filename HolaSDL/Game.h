@@ -7,6 +7,7 @@
 #include "UserInterface.h"
 #include <string>
 #include <iostream>
+#include "GameObject.h"
 #include "checkML.h";
 
 using namespace std;
@@ -33,13 +34,13 @@ private:
 public:
 	GameMap* gamemap;
 
-
 	//Entidades
 	Pacman* pacman;
 	Ghost* redGhost;
 	Ghost* orangeGhost;
 	Ghost* blueGhost;
 	Ghost* purpleGhost;
+
 
 	//Texturas
 	Texture* pacmanText;

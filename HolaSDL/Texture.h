@@ -3,7 +3,7 @@
 #include "SDL_image.h"
 #include <string>
 #include "checkML.h";
-#include <SDL_ttf.h>
+#include "SDL_ttf.h"
 #include "Font.h"
 #include <iostream>
 
@@ -23,6 +23,7 @@ private:
 public:
 	Texture();
 	~Texture();
+	void free();
 	bool load(SDL_Renderer* renderer, string filename, uint numRows = 1, uint numCols = 1);
 	void render(SDL_Renderer* renderer, const SDL_Rect& rect, SDL_RendererFlip flip = SDL_FLIP_NONE);
 	void renderFrame(SDL_Renderer* renderer, SDL_Rect& srcRect, const SDL_Rect& destRect, int row, int col, SDL_RendererFlip flip = SDL_FLIP_NONE);

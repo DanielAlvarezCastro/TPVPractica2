@@ -5,7 +5,6 @@
 #include "checkML.h";
 #include "GameCharacter.h"
 using namespace std;
-class Game;
 class Pacman: public GameCharacter
 {
 private:

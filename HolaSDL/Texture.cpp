@@ -6,6 +6,14 @@ Texture::Texture()
 }
 Texture::~Texture()
 {
+	free();
+}
+
+void Texture::free()
+{
+	SDL_DestroyTexture(texture);
+	texture = nullptr;
+	w = h = 0;
 }
 bool Texture::load(SDL_Renderer* renderer, string filename, uint numRows, uint numCols){//Carga la textura a parti de un archivo
 
