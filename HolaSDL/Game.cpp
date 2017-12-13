@@ -5,6 +5,7 @@
 Game::Game()
 {
 	level = 1;
+	score = 0;
 	winX = winY = 50;
 	SDL_Init(SDL_INIT_EVERYTHING);
 	window = SDL_CreateWindow("Pacman", winX, winY, winWidth, winHeight, SDL_WINDOW_SHOWN);
@@ -69,10 +70,12 @@ void Game::changeCell(int x, int y, MapCell cell)//Cambia el valor de una celda,
 }
 void Game::substractFood()//Resta 1 al contador de comida
 {
+	addScore(10);
 	gamemap->foods--;
 }
 void Game::substractVitamin()//Resta 1 al contador de vitamina
 {
+	addScore(50);
 	gamemap->vitamins--;
 }
 
@@ -207,6 +210,13 @@ void Game::handleEvents()//Comprueba eventos
 		}
 	}
 }
+
+void Game::addScore(int cuantity)
+{
+	score += cuantity;
+	cout << score;
+	cout << endl;
+}
 void Game::update(){//Controla los updates de las entidades y comprueba si ha habido una colisión
 	pacman->update();
 	handleCollision();//Maneja las colisiones antes de que los fantasmas se muevan para que no puedan cruzarse
@@ -219,7 +229,7 @@ void Game::update(){//Controla los updates de las entidades y comprueba si ha ha
 }
 void Game::render(){//Aplica el render del mapa, de las vidas, y de las entidades
 	SDL_RenderClear(renderer);
-	gamemap->renderMap();
+	gamemap->render();
 	pacman->render();
 	redGhost->render();
 	orangeGhost->render();
@@ -320,6 +330,7 @@ void Game::handleCollision(){//Gestiona las colisiones entre Pacman y los fantas
 		else{//Vuelve a su posición inicial y se vuelve invulnerable
 			blueGhost->backToIni();
 			blueGhost->vulnerabilityOff();
+			addScore(100);
 		}
 	}
 	else if (PacmanRedColl()){
@@ -332,6 +343,7 @@ void Game::handleCollision(){//Gestiona las colisiones entre Pacman y los fantas
 		else{//Vuelve a su posición inicial y se vuelve invulnerable
 			redGhost->backToIni();
 			redGhost->vulnerabilityOff();
+			addScore(100);
 		}
 	}
 	else if (PacmanPurpleColl()){
@@ -344,6 +356,7 @@ void Game::handleCollision(){//Gestiona las colisiones entre Pacman y los fantas
 		else{//Vuelve a su posición inicial y se vuelve invulnerable
 			purpleGhost->backToIni();
 			purpleGhost->vulnerabilityOff();
+			addScore(100);
 		}
 	}
 	else if (PacmanOrangeColl()){
@@ -356,6 +369,7 @@ void Game::handleCollision(){//Gestiona las colisiones entre Pacman y los fantas
 		else{//Vuelve a su posición inicial y se vuelve invulnerable
 			orangeGhost->backToIni();
 			orangeGhost->vulnerabilityOff();
+			addScore(100);
 		}
 	}
 }

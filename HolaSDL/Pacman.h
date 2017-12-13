@@ -9,14 +9,6 @@ class Game;
 class Pacman: public GameCharacter
 {
 private:
-	/*int x, y, w, h, xIni, yIni;
-	int nx, ny;//La posición siguiente calculada
-	int dirX, dirY, ndirX, ndirY;
-	uint Frow, Fcol;//Columnas donde están los frames en la imagen fuente
-	uint IniFrow, IniFcol; //Columnas iniciales donde están los frames
-	Game* game;
-	Texture* texture;
-	SDL_Rect destRect, srcRect;*/
 	int lives;
 public:
 	Pacman(Game *dir, uint xI, uint yI,uint Fcol);
@@ -33,8 +25,7 @@ public:
 
 	void changeDir(char dir);
 	void move();
-	void update();
-	//void render();
+	virtual void update();
 
 	void die();
 	void backToIni();

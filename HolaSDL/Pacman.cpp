@@ -3,17 +3,6 @@
 
 Pacman::Pacman(Game *dir, uint xI, uint yI, uint Fcol):GameCharacter(dir, xI, yI,Fcol)//Dirección al juego
 {
-	/*Frow = IniFrow = 0;
-	Fcol = IniFcol = 10;
-	game = dir;
-	texture = game->pacmanText;
-	destRect.w = w = game->getWinW() / game->getCols();//Calcula el tamaño del Pacman teniendo en relación la anchura de la ventana y las columnas
-	destRect.h = h = game->getWinH() / game->getRows();
-	x = xIni = xI;
-	y = yIni = yI;
-	destRect.x = x*w;
-	destRect.y = y*h;
-	dirX = 1;*/
 	lives = 3;
 }
 Pacman::~Pacman()
@@ -116,10 +105,7 @@ void Pacman::update(){//Lleva el movimiento y el lugar donde se pinta
 	destRect.x = x*w;
 	destRect.y = y*h;
 }
-/*void Pacman::render(){//Pinta la textura
-	texture->renderFrame(game->renderer, srcRect, destRect, Frow, Fcol);
-}
-*/
+
 void Pacman::die(){//Resta una vida a Pacman
 	lives--;
 	if (lives < 0){

@@ -2,9 +2,8 @@
 #include "Game.h"
 
 
-GameMap::GameMap(Game* dir, uint rows, uint cols)
+GameMap::GameMap(Game* dir, uint rows, uint cols) : GameObject(dir)
 {
-	game = dir;
 	this->rows = rows;
 	this->cols = cols;
 	foods = 0;
@@ -54,7 +53,7 @@ void GameMap::mapTexts()//Cambia el tamaño de los vectores de texturas y las car
 	FoodTex->load(game->renderer, "..\\images\\food2.png", 1, 1);
 	VitaminTex->load(game->renderer, "..\\images\\burguer1.png", 1, 1);
 }
-void GameMap::renderMap()//Pinta el mapa
+void GameMap::render()//Pinta el mapa
 {
 	uint w = 0;
 	uint f = 0;
@@ -97,3 +96,6 @@ void GameMap::renderMap()//Pinta el mapa
 		}
 	}
 }
+void GameMap::saveToFile(){}//Método de guardado en archivo
+void GameMap::loadFromFile(){}//Método de cargado en archivo
+void GameMap::update(){}

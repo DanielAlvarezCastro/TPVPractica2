@@ -21,6 +21,7 @@ private:
 	bool gameover = false;
 
 	SDL_Event event;
+	int score;
 	int winX, winY;
 	const int winWidth = 800;
 	const int winHeight = 600;
@@ -34,7 +35,7 @@ public:
 
 
 	//Entidades
-	GameObject* pacman;
+	Pacman* pacman;
 	Ghost* redGhost;
 	Ghost* orangeGhost;
 	Ghost* blueGhost;
@@ -59,6 +60,7 @@ public:
 
 
 	void changeCell(int x, int y, MapCell cell);
+	void addScore(int cuantity);
 	void substractFood();
 	void substractVitamin();
 

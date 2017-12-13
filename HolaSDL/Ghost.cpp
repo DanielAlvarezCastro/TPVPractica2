@@ -3,23 +3,12 @@
 
 
 
-Ghost::Ghost(Game *dir, uint xI, uint yI, uint FcolI)
+Ghost::Ghost(Game *dir, uint xI, uint yI, uint FcolI):GameCharacter(dir, xI, yI, FcolI)
 {
 	vulnerable = false;
 	srand(time(NULL));
-	game = dir;
-	texture = game->pacmanText;
-	Fcol = IniFcol = FcolI;
-	Frow = IniFrow = 0;
 	bFrow = 0;
 	bFcol = 12;
-	x = xIni = xI;
-	y = yIni = yI;
-	destRect.w = w = game->getWinW() / game->getCols();//Calcula el tamaño del Pacman teniendo en relación la anchura de la ventana y las columnas
-	destRect.h = h = game->getWinH() / game->getRows();
-	destRect.x = xIni*w;
-	destRect.y = yIni*h;
-	dirY = 1;
 }
 
 
@@ -143,9 +132,7 @@ void Ghost::update(){//Maneja el movimiento, la posición del sprite en pantalla 
 	}
 	else blueAnimation();
 }
-void Ghost::render(){//Pinta la textura
-	texture->renderFrame(game->renderer, srcRect, destRect, Frow, Fcol);
-}
+
 
 
 

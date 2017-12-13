@@ -6,7 +6,8 @@
 #include "GameMap.h"
 #include  <cstdlib>
 #include <time.h>
-#include "checkML.h";
+#include "checkML.h"
+#include "GameCharacter.h"
 
 struct par{//Struct para guardar las direcciones
 	int x;
@@ -15,23 +16,11 @@ struct par{//Struct para guardar las direcciones
 
 using namespace std;
 class Game;
-class Ghost
+class Ghost: public GameCharacter
 {
 private:
-
-	int x, y, w, h;
-	//Posiciones iniciales 
-	uint xIni;
-	uint yIni;
-	int nx, ny;//La posición siguiente calculada
-	int dirX, dirY;//Dirección actual del fantasma
-	uint Frow, Fcol;//Filas y columnas donde están los frames en la imagen fuente
-	uint IniFrow, IniFcol;//Filas y columnas que tienen al principio
-	uint bFrow, bFcol;//Filas y columnas de los sprites azules
-	Game* game;
-	Texture* texture;
-	SDL_Rect destRect, srcRect;
 	vector<par> dir;//Vector que guarda las direcciones accesibles
+	uint bFrow, bFcol;//Filas y columnas de los sprites azules
 	bool vulnerable;//Booleano que indica si el fantasma se puede comer o no
 	clock_t startTime;
 
@@ -51,9 +40,7 @@ public:
 
 	void searchDir();
 	void move();
-	void update();
-	void render();
-
+	virtual void update();
 	void backToIni();
 };
 

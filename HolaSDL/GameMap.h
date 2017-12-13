@@ -4,20 +4,17 @@
 #include "Texture.h"
 #include "checkML.h";
 #include <vector>
+#include "GameObject.h"
 using namespace std;
 enum MapCell{ Empty, Wall, Food, Vitamins };
 class Game;
-class GameMap
+class GameMap: public GameObject
 {
 	friend class Game;
 private:
-	//vector<Texture*> WallsTex;
-	//vector<Texture*> FoodsTex;
-	//vector<Texture*> VitaminsTex;
 	Texture* WallTex;
 	Texture* FoodTex;
 	Texture* VitaminTex;
-	Game* game;
 	SDL_Rect size;
 	uint rows;
 	uint cols;
@@ -36,7 +33,10 @@ public:
 	int getFoods();
 	int getVitamins();
 
+	void saveToFile();
+	void loadFromFile();
+	void update();
 	void mapTexts();
-	void renderMap();
+	void render();
 };
 

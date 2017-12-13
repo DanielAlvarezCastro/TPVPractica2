@@ -1,10 +1,11 @@
 #include "GameCharacter.h"
+#include "Game.h"
 
 
 GameCharacter::GameCharacter(Game *g, uint xI, uint yI, uint FcolI):GameObject(g)
 {
 	texture = game->pacmanText;
-	Fcol = IniFcol = FcolI;
+	Fcol = IniFcol = FcolI;//Cordenadas dentro del SpriteSheet
 	Frow = IniFrow = 0;
 	x = xIni = xI;
 	y = yIni = yI;
@@ -20,10 +21,9 @@ GameCharacter::GameCharacter(Game *g, uint xI, uint yI, uint FcolI):GameObject(g
 GameCharacter::~GameCharacter()
 {
 }
-void GameCharacter::saveToFile(){}
-void GameCharacter::loadFromFile(){}
-void GameCharacter::render()
+void GameCharacter::saveToFile(){}//Método de guardado en archivo
+void GameCharacter::loadFromFile(){}//Método de cargado en archivo
+void GameCharacter::render()//Renderizado de los personajes del juego
 {
 	texture->renderFrame(game->renderer, srcRect, destRect, Frow, Fcol);
 }
-void GameCharacter::update(){}

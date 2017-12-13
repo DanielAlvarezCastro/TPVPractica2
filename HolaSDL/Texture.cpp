@@ -29,3 +29,25 @@ void Texture::renderFrame(SDL_Renderer* renderer, SDL_Rect& srcRect, const SDL_R
 	srcRect.h = fh;
 	SDL_RenderCopy(renderer, texture, &srcRect, &destRect);
 }
+bool Texture::loadFromText(SDL_Renderer*renderer, string text,const	Font& font,SDL_Color color)	{
+	SDL_Surface* textSurface = font.generateSurface(text, color);
+	if (textSurface == nullptr)
+		cout << "Unable	to	render	text	surface!	SDL_ttf	Error:	"
+		<< TTF_GetError() << "\n";
+	else	
+	{
+		free();
+		texture = SDL_CreateTextureFromSurface(renderer, textSurface);
+		if (texture == nullptr)	{
+			cout << "Unable	to	create	texture	from	text!	SDL	Error:	"
+				<< SDL_GetError() << "\n";
+			w = h = 0;
+		}
+		else	{
+			w = textSurface->w;
+			h = textSurface->h;
+		}
+		SDL_FreeSurface(textSurface);
+	}
+	return	texture != nullptr;
+}
