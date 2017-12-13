@@ -17,8 +17,8 @@ protected:
 	uint IniFrow, IniFcol; //Columnas iniciales donde están los frames
 	SDL_Rect destRect, srcRect;
 public:
-	GameCharacter(uint xI, uint yI, uint FcolI);
-	virtual void update();
+	GameCharacter(Game *g, uint xI, uint yI, uint FcolI);
+	virtual void update()=0;
 	virtual void render();
 	virtual void saveToFile();
 	virtual void loadFromFile();

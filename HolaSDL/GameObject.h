@@ -11,10 +11,11 @@ protected:
 	virtual ~GameObject();
 
 public:
-	GameObject(/*Game *g*/);
-	virtual void render();
-	virtual void update();
-	virtual void saveToFile();
-	virtual void loadFromFile();
+	GameObject();
+	GameObject(Game *g);
+	virtual void render()=0;
+	virtual void update()=0;
+	virtual void saveToFile()=0;
+	virtual void loadFromFile()=0;
 };
 

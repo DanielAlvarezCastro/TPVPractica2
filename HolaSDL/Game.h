@@ -34,7 +34,7 @@ public:
 
 
 	//Entidades
-	Pacman* pacman;
+	GameObject* pacman;
 	Ghost* redGhost;
 	Ghost* orangeGhost;
 	Ghost* blueGhost;

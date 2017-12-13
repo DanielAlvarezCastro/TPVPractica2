@@ -172,7 +172,8 @@ void Game::createMap(string fileName)//Lee de un archivo y crea la matriz del ma
 			else if (dato == 9)
 			{
 				gamemap->cells[i][j] = Empty;
-				pacman = new Pacman(this, j, i);
+			//	pacman = new Pacman(this, j, i);
+				pacman = new Pacman(this, j ,i, 10);
 			}
 		}
 

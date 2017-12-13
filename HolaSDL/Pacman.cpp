@@ -1,9 +1,9 @@
 #include "Pacman.h"
 #include "Game.h"
 
-Pacman::Pacman(Game *dir, uint xI, uint yI)//Dirección al juego
+Pacman::Pacman(Game *dir, uint xI, uint yI, uint Fcol):GameCharacter(dir, xI, yI,Fcol)//Dirección al juego
 {
-	Frow = IniFrow = 0;
+	/*Frow = IniFrow = 0;
 	Fcol = IniFcol = 10;
 	game = dir;
 	texture = game->pacmanText;
@@ -13,7 +13,7 @@ Pacman::Pacman(Game *dir, uint xI, uint yI)//Dirección al juego
 	y = yIni = yI;
 	destRect.x = x*w;
 	destRect.y = y*h;
-	dirX = 1;
+	dirX = 1;*/
 	lives = 3;
 }
 Pacman::~Pacman()
@@ -116,10 +116,10 @@ void Pacman::update(){//Lleva el movimiento y el lugar donde se pinta
 	destRect.x = x*w;
 	destRect.y = y*h;
 }
-void Pacman::render(){//Pinta la textura
+/*void Pacman::render(){//Pinta la textura
 	texture->renderFrame(game->renderer, srcRect, destRect, Frow, Fcol);
 }
-
+*/
 void Pacman::die(){//Resta una vida a Pacman
 	lives--;
 	if (lives < 0){

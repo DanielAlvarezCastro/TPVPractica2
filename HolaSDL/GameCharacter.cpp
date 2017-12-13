@@ -1,7 +1,7 @@
 #include "GameCharacter.h"
 
 
-GameCharacter::GameCharacter(uint xI, uint yI, uint FcolI)
+GameCharacter::GameCharacter(Game *g, uint xI, uint yI, uint FcolI):GameObject(g)
 {
 	texture = game->pacmanText;
 	Fcol = IniFcol = FcolI;

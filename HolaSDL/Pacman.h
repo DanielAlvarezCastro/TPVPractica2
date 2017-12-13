@@ -3,22 +3,23 @@
 #include "SDL_image.h"
 #include "Texture.h"
 #include "checkML.h";
+#include "GameCharacter.h"
 using namespace std;
 class Game;
-class Pacman
+class Pacman: public GameCharacter
 {
 private:
-	int x, y, w, h, xIni, yIni;
+	/*int x, y, w, h, xIni, yIni;
 	int nx, ny;//La posición siguiente calculada
 	int dirX, dirY, ndirX, ndirY;
 	uint Frow, Fcol;//Columnas donde están los frames en la imagen fuente
 	uint IniFrow, IniFcol; //Columnas iniciales donde están los frames
 	Game* game;
 	Texture* texture;
-	SDL_Rect destRect, srcRect;
+	SDL_Rect destRect, srcRect;*/
 	int lives;
 public:
-	Pacman(Game *dir, uint xI, uint yI);
+	Pacman(Game *dir, uint xI, uint yI,uint Fcol);
 	~Pacman();
 	int getLives();
 	int getPosX();
@@ -33,7 +34,7 @@ public:
 	void changeDir(char dir);
 	void move();
 	void update();
-	void render();
+	//void render();
 
 	void die();
 	void backToIni();
