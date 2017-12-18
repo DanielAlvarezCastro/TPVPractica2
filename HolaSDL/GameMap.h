@@ -26,6 +26,7 @@ public:
 
 	MapCell** cells;
 	GameMap(Game* dir, uint rows, uint cols);
+	GameMap(Game* dir);
 	~GameMap();
 	int getRows();
 	int getCols();
@@ -33,10 +34,10 @@ public:
 	int getFoods();
 	int getVitamins();
 
-	void saveToFile();
-	void loadFromFile();
-	void update();
+	virtual void saveToFile(ofstream& archivo);
+	virtual void loadFromFile(ifstream& archivo);
+	virtual void update() {};
 	void mapTexts();
-	void render();
+	virtual void render();
 };
 

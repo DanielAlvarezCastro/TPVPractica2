@@ -17,10 +17,12 @@ protected:
 	uint IniFrow, IniFcol; //Columnas iniciales donde están los frames
 	SDL_Rect destRect, srcRect;
 public:
+	GameCharacter(Game* g);
 	GameCharacter(Game *g, uint xI, uint yI, uint FcolI);
 	virtual void update()=0;//Abstracto
 	virtual void render();
-	virtual void saveToFile();
-	virtual void loadFromFile();
+	virtual void saveToFile(ofstream& archivo);
+	virtual void loadFromFile(ifstream& archivo);
+	virtual void backToIni();
 };
 

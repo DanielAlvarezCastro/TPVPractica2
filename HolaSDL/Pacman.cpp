@@ -5,8 +5,20 @@ Pacman::Pacman(Game *dir, uint xI, uint yI, uint Fcol):GameCharacter(dir, xI, yI
 {
 	lives = 3;
 }
+Pacman::Pacman(Game *dir) : GameCharacter(dir)//Dirección al juego
+{
+	Fcol = 10;
+	lives = 3;
+}
+
 Pacman::~Pacman()
 {
+}
+void Pacman::saveToFile(ofstream& archivo){}//Método de guardado en archivo
+void Pacman::loadFromFile(ifstream& archivo)//Método de cargado en archivo
+{
+	GameCharacter::loadFromFile(archivo);
+	archivo >> lives;
 }
 int Pacman::getLives(){//Devuelve las vidas actuales
 	return lives;
@@ -87,10 +99,7 @@ void Pacman::move(){//Aplica la dirección siguiente si es posible
 		{
 			game->substractVitamin();
 			game->changeCell(nx, ny, Empty);//Cambia el valor de vitamina por vacío
-			game->blueGhost->vulnerabilityOn();
-			game->redGhost->vulnerabilityOn();
-			game->purpleGhost->vulnerabilityOn();
-			game->orangeGhost->vulnerabilityOn();
+			game->vulnerabilityOff();
 		}
 		else if (game->getCell(nx, ny) == Food)
 		{
@@ -112,7 +121,4 @@ void Pacman::die(){//Resta una vida a Pacman
 		game->gameOver();
 	}
 }
-void Pacman::backToIni(){//Regresa a la posición inicial
-	x = xIni;
-	y = yIni;
-}
+

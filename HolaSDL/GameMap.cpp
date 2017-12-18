@@ -16,6 +16,14 @@ GameMap::GameMap(Game* dir, uint rows, uint cols) : GameObject(dir)
 	size.h = game->getWinH() / rows;
 	size.w = game->getWinW() / cols;
 }
+GameMap::GameMap(Game* dir) : GameObject(dir)
+{
+	foods = 0;
+	walls = 0;
+	vitamins = 0;
+	mapTexts();
+	
+}
 
 GameMap::~GameMap()
 {
@@ -96,6 +104,46 @@ void GameMap::render()//Pinta el mapa
 		}
 	}
 }
-void GameMap::saveToFile(){}//Método de guardado en archivo
-void GameMap::loadFromFile(){}//Método de cargado en archivo
-void GameMap::update(){}
+void GameMap::saveToFile(ofstream& archivo)//Método de guardado en archivo
+{
+	
+}
+void GameMap::loadFromFile(ifstream& archivo)//Método de cargado en archivo
+{
+	archivo >> rows;
+	archivo >> cols;
+	cells = new MapCell*[rows];
+	for (int r = 0; r < rows; r++){
+		cells[r] = new MapCell[cols];
+	}
+	size.h = game->getWinH() / rows;
+	size.w = game->getWinW() / cols;
+	int dato;
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			archivo >> dato;
+			if (dato == 0){
+				cells[i][j] = Empty;
+			}
+			else if (dato == 1){
+				cells[i][j] = Wall;
+				walls++;
+			}
+			else if (dato == 2){
+				cells[i][j] = Food;
+				foods++;
+			}
+			else if (dato == 3){
+				cells[i][j] = Vitamins;
+				vitamins++;
+			}
+			else
+			{
+				cells[i][j] = Empty;
+			}
+		}
+	}
+}
+

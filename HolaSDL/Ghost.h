@@ -17,7 +17,7 @@ struct par{//Struct para guardar las direcciones
 using namespace std;
 class Ghost: public GameCharacter
 {
-private:
+protected:
 	vector<par> dir;//Vector que guarda las direcciones accesibles
 	uint bFrow, bFcol;//Filas y columnas de los sprites azules
 	bool vulnerable;//Booleano que indica si el fantasma se puede comer o no
@@ -25,7 +25,10 @@ private:
 
 public:
 	Ghost(Game *dir, uint xI, uint yI, uint FcolI);
+	Ghost(Game* dir);
 	~Ghost();
+	virtual void saveToFile(ofstream& archivo);
+	virtual void loadFromFile(ifstream& archivo);
 
 	int getPosX();
 	int getPosY();
@@ -40,6 +43,5 @@ public:
 	void searchDir();
 	void move();
 	virtual void update();
-	void backToIni();
 };
 

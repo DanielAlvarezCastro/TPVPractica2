@@ -12,8 +12,9 @@ public:
 		load(filename, size);
 	}
 	~Font()	{ free(); }
-	bool	load(string	filename, int	size)	{
+	void	load(string	filename, int	size)	{
 		font = TTF_OpenFont(filename.c_str(), size);
+		
 	}
 	void	free()	{
 		if (font != nullptr)	TTF_CloseFont(font);

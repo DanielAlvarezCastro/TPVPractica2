@@ -33,7 +33,7 @@ void UserInterface::setLifeSize(){//Cambia el tamaño y la posición de los sprite
 
 void UserInterface::renderLives(){//Pinta los sprites de vida
 
-	if (game->pacman->getLives() == 3){//Cuando hay 3 vidas pinta la misma textura 3 veces cambiando su x
+	if (game->getPacmanLives() == 3){//Cuando hay 3 vidas pinta la misma textura 3 veces cambiando su x
 		lifeRect.x = 0;
 		life->renderFrame(game->renderer, lifeSrcRect, lifeRect, 0, 10);
 		lifeRect.x = 0 + game->getWinW() / game->getCols();
@@ -41,13 +41,13 @@ void UserInterface::renderLives(){//Pinta los sprites de vida
 		lifeRect.x = 0 + 2 * game->getWinW() / game->getCols();
 		life->renderFrame(game->renderer, lifeSrcRect, lifeRect, 0, 10);
 	}
-	else if (game->pacman->getLives() == 2){
+	else if (game->getPacmanLives() == 2){
 		lifeRect.x = 0;
 		life->renderFrame(game->renderer, lifeSrcRect, lifeRect, 0, 10);
 		lifeRect.x = 0 + game->getWinW() / game->getCols();
 		life->renderFrame(game->renderer, lifeSrcRect, lifeRect, 0, 10);
 	}
-	else if (game->pacman->getLives() == 1){
+	else if (game->getPacmanLives() == 1){
 		lifeRect.x = 0;
 		life->renderFrame(game->renderer, lifeSrcRect, lifeRect, 0, 10);
 	}

@@ -11,7 +11,10 @@ private:
 	int lives;
 public:
 	Pacman(Game *dir, uint xI, uint yI,uint Fcol);
+	Pacman(Game* dir);
 	~Pacman();
+	virtual void saveToFile(ofstream& archivo);
+	virtual void loadFromFile(ifstream& archivo);
 	int getLives();
 	int getPosX();
 	int getPosY();
@@ -27,6 +30,6 @@ public:
 	virtual void update();
 
 	void die();
-	void backToIni();
+
 };
 

@@ -10,13 +10,24 @@ Ghost::Ghost(Game *dir, uint xI, uint yI, uint FcolI):GameCharacter(dir, xI, yI,
 	bFrow = 0;
 	bFcol = 12;
 }
-
+Ghost::Ghost(Game *dir) :GameCharacter(dir)
+{
+	vulnerable = false;
+	Fcol = 0;
+}
 
 Ghost::~Ghost()
 {
 
 }
-
+void Ghost::saveToFile(ofstream& archivo)//Método de guardado en archivo
+{
+	GameCharacter::saveToFile(archivo);
+}
+void Ghost::loadFromFile(ifstream& archivo)//Método de cargado en archivo
+{
+	GameCharacter::loadFromFile(archivo);
+}
 int Ghost::getPosX(){//Devuelve la posición x
 	return x;
 }
@@ -124,6 +135,7 @@ void Ghost::update(){//Maneja el movimiento, la posición del sprite en pantalla 
 	move();
 	destRect.x = x*w;
 	destRect.y = y*h;
+	cout << "hello";
 	if (vulnerable && (clock() - startTime) / CLOCKS_PER_SEC >= 5){//Si es vulnerable llama a un contador
 		vulnerabilityOff();//Después de 5 segundos se vuelve invulnerable
 	}
@@ -136,10 +148,8 @@ void Ghost::update(){//Maneja el movimiento, la posición del sprite en pantalla 
 
 
 
-void Ghost::backToIni(){//Método que hace que los fantasmas regresen a su pos inicial
-	x = xIni;
-	y = yIni;
-}
+
+
 
 
 

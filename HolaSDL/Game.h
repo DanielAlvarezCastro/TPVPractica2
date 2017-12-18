@@ -5,10 +5,12 @@
 #include "GameMap.h"
 #include "Ghost.h"
 #include "UserInterface.h"
+#include "SmartGhost.h"
 #include <string>
 #include <iostream>
 #include "GameObject.h"
 #include "checkML.h";
+#include <typeinfo>
 
 using namespace std;
 class Game
@@ -22,7 +24,22 @@ private:
 	bool gameover = false;
 
 	SDL_Event event;
+
 	int score;
+	SDL_Color white;
+	Font* screenFont;
+	Texture* scoreText;
+	SDL_Rect scorePos;
+
+	bool saving = false;
+	string codeN;
+	Texture* savePanel;
+	Texture* saveText;
+	Texture* saveCode;
+	SDL_Rect spanelPos;
+	SDL_Rect stextPos;
+	SDL_Rect scodePos;
+
 	int winX, winY;
 	const int winWidth = 800;
 	const int winHeight = 600;
@@ -32,22 +49,19 @@ private:
 	UserInterface* userinterface;
 
 public:
-	GameMap* gamemap;
+	//GameMap* gamemap;
 
+	vector<GameObject*>gameObjects;
 	//Entidades
-	Pacman* pacman;
-	Ghost* redGhost;
+	/*Pacman* pacman;
+	SmartGhost* redGhost;
 	Ghost* orangeGhost;
 	Ghost* blueGhost;
-	Ghost* purpleGhost;
+	Ghost* purpleGhost;*/
 
 
 	//Texturas
 	Texture* pacmanText;
-	Texture* redText;
-	Texture* orangeText;
-	Texture* blueText;
-	Texture* purpleText;
 	//Fin Texturas
 
 	SDL_Renderer* renderer;
@@ -75,12 +89,15 @@ public:
 
 
 	bool nextCell(int x, int y, int dirX, int dirY, int& nx, int& ny);
-	bool PacmanBlueColl();
+	int pacmanColl();
+	/*bool PacmanBlueColl();
 	bool PacmanRedColl();
 	bool PacmanPurpleColl();
-	bool PacmanOrangeColl();
+	bool PacmanOrangeColl();*/
 	void handleCollision();
 	void resetPositions();
+	void vulnerabilityOff();
+	int getPacmanLives();
 
 	void checkEndGame();
 	void gameOver();
