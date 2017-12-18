@@ -1,4 +1,4 @@
-﻿Build started 18/12/2017 2:57:45.
+﻿Build started 18/12/2017 13:08:50.
      1>Project "C:\Users\Daniel\Desktop\Trabajos\TPVPractica2\HolaSDL\HolaSDL.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp
@@ -7,8 +7,7 @@
      1>c:\users\daniel\desktop\trabajos\tpvpractica2\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
      1>c:\users\daniel\desktop\trabajos\tpvpractica2\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
      1>c:\users\daniel\desktop\trabajos\tpvpractica2\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-     1>c:\users\daniel\desktop\trabajos\tpvpractica2\holasdl\game.h(12): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-     1>c:\users\daniel\desktop\trabajos\tpvpractica2\holasdl\game.cpp(283): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2\holasdl\game.h(13): warning C4067: unexpected tokens following preprocessor directive - expected a newline
      1>c:\users\daniel\desktop\trabajos\tpvpractica2\holasdl\game.cpp(302): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\daniel\desktop\trabajos\tpvpractica2\holasdl\game.cpp(412): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\daniel\desktop\trabajos\tpvpractica2\holasdl\game.cpp(420): warning C4018: '<' : signed/unsigned mismatch
@@ -29,4 +28,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.12
+Time Elapsed 00:00:01.20

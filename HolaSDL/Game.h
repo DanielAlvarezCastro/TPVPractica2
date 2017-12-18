@@ -7,6 +7,7 @@
 #include "UserInterface.h"
 #include "SmartGhost.h"
 #include <string>
+#include <vector>
 #include <iostream>
 #include "GameObject.h"
 #include "checkML.h";
@@ -51,7 +52,7 @@ private:
 public:
 	//GameMap* gamemap;
 
-	vector<GameObject*>gameObjects;
+	vector<GameObject*> gameObjects;
 	//Entidades
 	/*Pacman* pacman;
 	SmartGhost* redGhost;

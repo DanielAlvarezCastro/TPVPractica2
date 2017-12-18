@@ -6,14 +6,14 @@
 Ghost::Ghost(Game *dir, uint xI, uint yI, uint FcolI):GameCharacter(dir, xI, yI, FcolI)
 {
 	vulnerable = false;
-	srand(time(NULL));
-	bFrow = 0;
-	bFcol = 12;
 }
 Ghost::Ghost(Game *dir) :GameCharacter(dir)
 {
 	vulnerable = false;
-	Fcol = 0;
+	srand(time(NULL));
+	bFrow = 0;
+	bFcol = 12;
+	Fcol=IniFcol = 0;
 }
 
 Ghost::~Ghost()
@@ -135,7 +135,6 @@ void Ghost::update(){//Maneja el movimiento, la posición del sprite en pantalla 
 	move();
 	destRect.x = x*w;
 	destRect.y = y*h;
-	cout << "hello";
 	if (vulnerable && (clock() - startTime) / CLOCKS_PER_SEC >= 5){//Si es vulnerable llama a un contador
 		vulnerabilityOff();//Después de 5 segundos se vuelve invulnerable
 	}

@@ -7,7 +7,7 @@ Pacman::Pacman(Game *dir, uint xI, uint yI, uint Fcol):GameCharacter(dir, xI, yI
 }
 Pacman::Pacman(Game *dir) : GameCharacter(dir)//Dirección al juego
 {
-	Fcol = 10;
+	Fcol = IniFcol= 10;
 	lives = 3;
 }
 

@@ -188,7 +188,7 @@ void Game::createMap(string fileName)//Lee de un archivo y crea la matriz del ma
 	}
 	Pacman* p = new Pacman(this);
 	gameObjects.push_back(p);
-	gameObjects[size- 1]->loadFromFile(archivo);
+	gameObjects[gameObjects.size()- 1]->loadFromFile(archivo);
 	archivo.close();
 
 }
@@ -280,13 +280,13 @@ void Game::addScore(int cuantity)
 	scoreText->loadFromText(renderer, scoreSTR, screenFont, white);
 }
 void Game::update(){//Controla los updates de las entidades y comprueba si ha habido una colisión
-	for (int i = 0; i < gameObjects.size(); i++)
+	for (int i = gameObjects.size()-1; i >=0; i--)
 	{
 		gameObjects[i]->update();
-		if (i == gameObjects.size() - 1)
+		handleCollision();
+		/*if (i == gameObjects.size() - 1)
 		{
-			handleCollision();
-		}
+		}*/
 	}
 	/*pacman->update();
 	handleCollision();//Maneja las colisiones antes de que los fantasmas se muevan para que no puedan cruzarse
@@ -409,9 +409,9 @@ int Game::getPacmanLives()
 }
 void Game::vulnerabilityOff()
 {
-	for (int i = 1; i < gameObjects.size() - 2; i++)
+	for (int i = 1; i < gameObjects.size() - 1; i++)
 	{
-		static_cast<Ghost*>(gameObjects[i])->vulnerabilityOff();
+		static_cast<Ghost*>(gameObjects[i])->vulnerabilityOn();
 	}
 }
 int Game::pacmanColl()
