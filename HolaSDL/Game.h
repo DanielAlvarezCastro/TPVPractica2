@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <fstream>
 #include "GameObject.h"
 #include "checkML.h";
 #include <typeinfo>
@@ -50,15 +51,10 @@ private:
 	UserInterface* userinterface;
 
 public:
-	//GameMap* gamemap;
+
 
 	vector<GameObject*> gameObjects;
-	//Entidades
-	/*Pacman* pacman;
-	SmartGhost* redGhost;
-	Ghost* orangeGhost;
-	Ghost* blueGhost;
-	Ghost* purpleGhost;*/
+
 
 
 	//Texturas
@@ -80,7 +76,9 @@ public:
 	void substractFood();
 	void substractVitamin();
 
-	void createMap(string filename);
+	void createMap(ifstream& filename);
+	void loadLevel(string filename);
+	void loadSave(string filename);
 	void menuEvents();
 	void nextLevel();
 	void handleEvents();
@@ -91,10 +89,6 @@ public:
 
 	bool nextCell(int x, int y, int dirX, int dirY, int& nx, int& ny);
 	int pacmanColl();
-	/*bool PacmanBlueColl();
-	bool PacmanRedColl();
-	bool PacmanPurpleColl();
-	bool PacmanOrangeColl();*/
 	void handleCollision();
 	void resetPositions();
 	void vulnerabilityOff();

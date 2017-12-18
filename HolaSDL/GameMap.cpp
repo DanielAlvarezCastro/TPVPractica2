@@ -18,9 +18,7 @@ GameMap::GameMap(Game* dir, uint rows, uint cols) : GameObject(dir)
 }
 GameMap::GameMap(Game* dir) : GameObject(dir)
 {
-	foods = 0;
-	walls = 0;
-	vitamins = 0;
+	
 	mapTexts();
 	
 }
@@ -106,10 +104,39 @@ void GameMap::render()//Pinta el mapa
 }
 void GameMap::saveToFile(ofstream& archivo)//Método de guardado en archivo
 {
-	
+	archivo << rows << " " << cols << endl;
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			if (cells[i][j] == Wall)
+			{
+				archivo << "1" << " ";
+			}
+			else if (cells[i][j] == Food)
+			{
+				archivo << "2" << " ";
+
+			}
+			else if (cells[i][j] == Vitamins)
+			{
+				
+				archivo << "3" << " ";
+			}
+			else
+			{
+				archivo << "0" << " ";
+			}
+		}
+		archivo << endl;
+	}
 }
 void GameMap::loadFromFile(ifstream& archivo)//Método de cargado en archivo
+
 {
+	foods = 0;
+	walls = 0;
+	vitamins = 0;
 	archivo >> rows;
 	archivo >> cols;
 	cells = new MapCell*[rows];
@@ -133,11 +160,11 @@ void GameMap::loadFromFile(ifstream& archivo)//Método de cargado en archivo
 			}
 			else if (dato == 2){
 				cells[i][j] = Food;
-				foods++;
+				vitamins++;
 			}
 			else if (dato == 3){
 				cells[i][j] = Vitamins;
-				vitamins++;
+				foods++;
 			}
 			else
 			{

@@ -22,6 +22,7 @@ Ghost::~Ghost()
 }
 void Ghost::saveToFile(ofstream& archivo)//Método de guardado en archivo
 {
+	archivo << "0" << " ";
 	GameCharacter::saveToFile(archivo);
 }
 void Ghost::loadFromFile(ifstream& archivo)//Método de cargado en archivo
@@ -107,10 +108,11 @@ void Ghost::move()//Escoge una dirección aleatoria del vector y la aplica
 		dirY = 0;
 		searchDir();
 	}
-	int r = rand() % dir.size();//Valor auxiliar que guarda el random
-	dirX = dir[r].x;
-	dirY = dir[r].y;
-
+	if (dir.size() > 0){
+		int r = rand() % dir.size();//Valor auxiliar que guarda el random
+		dirX = dir[r].x;
+		dirY = dir[r].y;
+	}
 	x += dirX;
 	y += dirY;
 	if (x >= game->getCols())//Estas condiciones hacen que el mapa tenga forma toroide

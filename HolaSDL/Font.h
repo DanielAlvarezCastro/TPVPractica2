@@ -21,7 +21,7 @@ public:
 		font = nullptr;
 	}
 	SDL_Surface*	generateSurface(string	text, SDL_Color	color)	const	{
-		return	TTF_RenderText_Solid(font, text.c_str(), color);
+		return	TTF_RenderText_Solid(font, text.c_str(), color);//->clip_rect
 	}
 };
 

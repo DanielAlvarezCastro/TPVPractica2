@@ -11,14 +11,23 @@ SmartGhost::SmartGhost(Game *dir, uint xI, uint yI, uint FcolI): Ghost(dir, xI, 
 }
 SmartGhost::SmartGhost(Game *dir) : Ghost(dir)
 {
-
+	edad = 1;
+	adulto = false;
+	hIni = destRect.h;
+	wIni = destRect.w;
+	Fcol = IniFcol = 8;
 }
 
 
 SmartGhost::~SmartGhost()
 {
 }
-void SmartGhost::saveToFile(ofstream& archivo){}//Método de guardado en archivo
+void SmartGhost::saveToFile(ofstream& archivo)//Método de guardado en archivo
+{
+	archivo << "1" << " ";
+	GameCharacter::saveToFile(archivo);
+	archivo << edad << " ";
+}
 void SmartGhost::loadFromFile(ifstream& archivo)//Método de cargado en archivo
 {
 	Ghost::loadFromFile(archivo);

@@ -67,13 +67,7 @@ Game::~Game()
 	//Borra el SpriteSheet
 	delete pacmanText;
 
-	//Borra entidades
 
-	/*delete pacman;
-	delete redGhost;
-	delete orangeGhost;
-	delete blueGhost;
-	delete purpleGhost;*/
 	delete userinterface;
 
 	delete scoreText;
@@ -138,32 +132,49 @@ void Game::menuEvents()//Comprueba eventos del menú
 void Game::nextLevel(){//Controla el nivel que se va a cargar 
 	exitlevel = false;
 	if (level == 1){
-		createMap("level01");//Carga el nivel actual
+		loadLevel("level01");
+		//loadSave("555");//Carga el nivel actual
 		userinterface->setLifeSize();//Ajusta los valores de la interfaz de vida
 	}
 	else if (level == 2){
-		createMap("level02");
+		loadLevel("level02");
 		userinterface->setLifeSize();
 	}
 	else if (level == 3){
-		createMap("level03");
+		loadLevel("level03");
 		userinterface->setLifeSize();
 	}
 	else if (level == 4){
-		createMap("level04");
+		loadLevel("level04");
 		userinterface->setLifeSize();
 	}
 	else if (level == 5){
-		createMap("level05");
+		loadLevel("level05");
 		userinterface->setLifeSize();
 	}
 	else exit = true;
+	//SDL_PointInRect()
 }
-void Game::createMap(string fileName)//Lee de un archivo y crea la matriz del mapa
+void Game::loadSave(string filename)
 {
 	ifstream archivo;
+	gameObjects.clear();
+	archivo.open("..\\saves\\" + filename + ".pac");
+	archivo >> level;
+	archivo >> score;
+	createMap(archivo);
+}
+
+void Game::loadLevel(string filename)
+{
+	ifstream archivo;
+	gameObjects.clear();
+	archivo.open("..\\levels\\" + filename + ".pac");
+	createMap(archivo);
+}
+void Game::createMap(ifstream& archivo)//Lee de un archivo y crea la matriz del mapa
+{
 	int dato;
-	archivo.open("..\\levels\\" + fileName + ".dat");
 	GameMap* gm = new GameMap(this);
 	gm->loadFromFile(archivo);
 	int size;
@@ -197,6 +208,7 @@ void Game::createMap(string fileName)//Lee de un archivo y crea la matriz del ma
 void Game::handleEvents()//Comprueba eventos
 {
 	while (SDL_PollEvent(&event) && !exit) {
+		
 		if (event.type == SDL_QUIT)
 		{
 			exit = true;
@@ -262,9 +274,20 @@ void Game::handleEvents()//Comprueba eventos
 					codeN += "9";
 					saveCode->loadFromText(renderer, codeN, screenFont, white);
 				}
-				else if (event.key.keysym.sym == SDLK_INSERT)
+				else if (event.key.keysym.sym == SDLK_RETURN)
 				{
 					saving = false;
+					ofstream archivo("..\\saves\\"+codeN + ".pac");
+					archivo << level << " " << score << endl;
+					gameObjects[0]->saveToFile(archivo);
+					archivo << endl;
+					archivo << gameObjects.size() - 2;
+					archivo << endl;
+					for (int i = 1; i < gameObjects.size(); i++)
+					{
+						gameObjects[i]->saveToFile(archivo);
+						archivo << endl;
+					}
 					codeN = "";
 				}
 				
@@ -283,17 +306,12 @@ void Game::update(){//Controla los updates de las entidades y comprueba si ha ha
 	for (int i = gameObjects.size()-1; i >=0; i--)
 	{
 		gameObjects[i]->update();
-		handleCollision();
-		/*if (i == gameObjects.size() - 1)
+		if (i == gameObjects.size() - 1)
 		{
-		}*/
+		handleCollision();
+		}
 	}
-	/*pacman->update();
-	handleCollision();//Maneja las colisiones antes de que los fantasmas se muevan para que no puedan cruzarse
-	redGhost->update();
-	orangeGhost->update();
-	blueGhost->update();
-	purpleGhost->update();*/
+
 	handleCollision();
 	checkEndGame();
 }
@@ -304,12 +322,7 @@ void Game::render(){//Aplica el render del mapa, de las vidas, y de las entidade
 		gameObjects[i]->render();
 	}
 	gameObjects[gameObjects.size()-1]->render();
-	/*gamemap->render();
-	pacman->render();
-	redGhost->render();
-	orangeGhost->render();
-	blueGhost->render();
-	purpleGhost->render();*/
+
 	scoreText->render(renderer, scorePos);
 	userinterface->renderLives();
 	if (saving)
@@ -379,30 +392,6 @@ bool Game::nextCell(int x, int y, int dirX, int dirY, int& nx, int& ny)//Si la s
 	}
 	else return false;
 }
-/*bool Game::PacmanBlueColl(){//Comprueba si hay un fantasma azul en la posición que Pacman
-	if (blueGhost->getPosX() == pacman->getPosX() && blueGhost->getPosY() == pacman->getPosY()){
-		return true;
-	}
-	else return false;
-}
-bool Game::PacmanRedColl(){//Comprueba si hay un fantasma rojo en la posición que Pacman
-	if (redGhost->getPosX() == pacman->getPosX() && redGhost->getPosY() == pacman->getPosY()){
-		return true;
-	}
-	else return false;
-}
-bool Game::PacmanPurpleColl(){//Comprueba si hay un fantasma morado en la posición que Pacman
-	if (purpleGhost->getPosX() == pacman->getPosX() && purpleGhost->getPosY() == pacman->getPosY()){
-		return true;
-	}
-	else return false;
-}
-bool Game::PacmanOrangeColl(){//Comprueba si hay un fantasma naranja en la posición que Pacman
-	if (orangeGhost->getPosX() == pacman->getPosX() && orangeGhost->getPosY() == pacman->getPosY()){
-		return true;
-	}
-	else return false;
-}*/
 int Game::getPacmanLives()
 {
 	return static_cast<Pacman*>(gameObjects[gameObjects.size()-1])->getLives();
@@ -417,7 +406,7 @@ void Game::vulnerabilityOff()
 int Game::pacmanColl()
 {
 	int i = 1;
-	while(i < gameObjects.size()- 2)
+	while(i < gameObjects.size()- 1)
 	{
 		if (static_cast<Ghost*>(gameObjects[i])->getPosX() == static_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->getPosX() &&
 			static_cast<Ghost*>(gameObjects[i])->getPosY() == static_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->getPosY())
@@ -447,69 +436,12 @@ void Game::handleCollision(){//Gestiona las colisiones entre Pacman y los fantas
 		}
 	}
 }
-	/*if (PacmanBlueColl()){
-		if (!blueGhost->getVulnerability()){//Si el fantasma en cuestión es invulnerable, Pacman pierde una vida
-			pacman->die();
-			render();//Pinta justo después de morir y hace un delay para comprender mejor la escena
-			SDL_Delay(500);
-			resetPositions();
-		}
-		else{//Vuelve a su posición inicial y se vuelve invulnerable
-			blueGhost->backToIni();
-			blueGhost->vulnerabilityOff();
-			addScore(100);
-		}
-	}
-	else if (PacmanRedColl()){
-		if (!redGhost->getVulnerability()){//Si el fantasma en cuestión es invulnerable, Pacman pierde una vida
-			pacman->die();
-			render();
-			SDL_Delay(500);
-			resetPositions();
-		}
-		else{//Vuelve a su posición inicial y se vuelve invulnerable
-			redGhost->backToIni();
-			redGhost->vulnerabilityOff();
-			addScore(100);
-		}
-	}
-	else if (PacmanPurpleColl()){
-		if (!purpleGhost->getVulnerability()){//Si el fantasma en cuestión es invulnerable, Pacman pierde una vida
-			pacman->die();
-			render();
-			SDL_Delay(500);
-			resetPositions();
-		}
-		else{//Vuelve a su posición inicial y se vuelve invulnerable
-			purpleGhost->backToIni();
-			purpleGhost->vulnerabilityOff();
-			addScore(100);
-		}
-	}
-	else if (PacmanOrangeColl()){
-		if (!orangeGhost->getVulnerability()){//Si el fantasma en cuestión es invulnerable, Pacman pierde una vida
-			pacman->die();
-			render();
-			SDL_Delay(500);
-			resetPositions();
-		}
-		else{//Vuelve a su posición inicial y se vuelve invulnerable
-			orangeGhost->backToIni();
-			orangeGhost->vulnerabilityOff();
-			addScore(100);
-		}
-	}*/
 
 void Game::resetPositions(){//Reinicia las posiciones de los fantasmas y el pacman
 	for (int i = 1; i < gameObjects.size(); i++)
 	{
 		static_cast<GameCharacter*>(gameObjects[i])->backToIni();
 	}
-	/*pacman->backToIni();
-	redGhost->backToIni();
-	blueGhost->backToIni();
-	purpleGhost->backToIni();
-	orangeGhost->backToIni();*/
 }
 
 void Game::checkEndGame(){//Comprueba que no quedan comidas ni vitaminas en el mapa

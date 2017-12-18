@@ -33,7 +33,7 @@ GameCharacter::~GameCharacter()
 }
 void GameCharacter::saveToFile(ofstream& archivo)//Método de guardado en archivo
 {
-
+	archivo << x << " " << y << " " << xIni << " " << yIni << " " << dirX << " " << dirY<<" ";
 }
 void GameCharacter::loadFromFile(ifstream& archivo)//Método de cargado en archivo
 {

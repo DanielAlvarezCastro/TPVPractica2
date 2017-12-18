@@ -14,7 +14,12 @@ Pacman::Pacman(Game *dir) : GameCharacter(dir)//Dirección al juego
 Pacman::~Pacman()
 {
 }
-void Pacman::saveToFile(ofstream& archivo){}//Método de guardado en archivo
+void Pacman::saveToFile(ofstream& archivo)//Método de guardado en archivo
+{
+	GameCharacter::saveToFile(archivo);
+	archivo << lives;
+}
+
 void Pacman::loadFromFile(ifstream& archivo)//Método de cargado en archivo
 {
 	GameCharacter::loadFromFile(archivo);
