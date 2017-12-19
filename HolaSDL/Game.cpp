@@ -310,6 +310,10 @@ void Game::update(){//Controla los updates de las entidades y comprueba si ha ha
 		{
 		handleCollision();
 		}
+		else
+		{
+			handleBirths();
+		}
 	}
 
 	handleCollision();
@@ -422,6 +426,78 @@ void Game::vulnerabilityOff()
 		static_cast<Ghost*>(gameObjects[i])->vulnerabilityOn();
 	}
 }
+
+vector<int> Game::sghostCounter()
+{
+	
+	vector<int> ghost(0);
+	for (int i = 1; i < gameObjects.size() - 1; i++)
+	{
+		if (typeid(*gameObjects[i]) == typeid(SmartGhost))
+		{
+			if (static_cast<SmartGhost*>(gameObjects[i])->getFertil())
+			{
+				ghost.push_back(i);
+			}
+		}
+	}
+	return ghost;
+}
+
+void Game::handleBirths()
+{
+	vector<int> ghost = sghostCounter();
+	int x, y;
+	if (ghost.size() >= 2)
+	{
+		for (int i = 0; i < ghost.size() - 1; i++)
+		{
+			for (int j = i + 1; j < ghost.size(); j++)
+			{
+				if (static_cast<Ghost*>(gameObjects[ghost[i]])->getPosX() == static_cast<Ghost*>(gameObjects[ghost[j]])->getPosX() &&
+					static_cast<Ghost*>(gameObjects[ghost[i]])->getPosY() == static_cast<Ghost*>(gameObjects[ghost[j]])->getPosY())
+				{
+					x = static_cast<Ghost*>(gameObjects[ghost[i]])->getPosX();
+					y = static_cast<Ghost*>(gameObjects[ghost[i]])->getPosY();
+					if (static_cast<GameMap*>(gameObjects[0])->cells[y + 1][x] != Wall)
+					{
+						SmartGhost* sg = new SmartGhost(this, x, y + 1);
+						gameObjects.push_back(gameObjects[gameObjects.size() - 1]);
+						gameObjects[gameObjects.size() - 2] = sg;
+						static_cast<SmartGhost*>(gameObjects[ghost[i]])->fertilOff();
+						static_cast<SmartGhost*>(gameObjects[ghost[j]])->fertilOff();
+
+					}
+					else if (static_cast<GameMap*>(gameObjects[0])->cells[y - 1][x] != Wall)
+					{
+						SmartGhost* sg = new SmartGhost(this, x, y - 1);
+						gameObjects.push_back(gameObjects[gameObjects.size() - 1]);
+						gameObjects[gameObjects.size() - 2] = sg;
+						static_cast<SmartGhost*>(gameObjects[ghost[i]])->fertilOff();
+						static_cast<SmartGhost*>(gameObjects[ghost[j]])->fertilOff();
+					}
+					else if (static_cast<GameMap*>(gameObjects[0])->cells[y][x + 1] != Wall)
+					{
+						SmartGhost* sg = new SmartGhost(this, x + 1, y);
+						gameObjects.push_back(gameObjects[gameObjects.size() - 1]);
+						gameObjects[gameObjects.size() - 2] = sg;
+						static_cast<SmartGhost*>(gameObjects[ghost[i]])->fertilOff();
+						static_cast<SmartGhost*>(gameObjects[ghost[j]])->fertilOff();
+					}
+					else if (static_cast<GameMap*>(gameObjects[0])->cells[y][x - 1] != Wall)
+					{
+						SmartGhost* sg = new SmartGhost(this, x - 1, y);
+						gameObjects.push_back(gameObjects[gameObjects.size() - 1]);
+						gameObjects[gameObjects.size() - 2] = sg;
+						static_cast<SmartGhost*>(gameObjects[ghost[i]])->fertilOff();
+						static_cast<SmartGhost*>(gameObjects[ghost[j]])->fertilOff();
+					}
+				}
+			}
+		}
+	}
+}
+
 int Game::pacmanColl()
 {
 	int i = 1;

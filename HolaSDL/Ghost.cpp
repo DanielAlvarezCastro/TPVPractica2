@@ -3,7 +3,7 @@
 
 
 
-Ghost::Ghost(Game *dir, uint xI, uint yI, uint FcolI):GameCharacter(dir, xI, yI, FcolI)
+Ghost::Ghost(Game *dir, uint xI, uint yI):GameCharacter(dir, xI, yI)
 {
 	vulnerable = false;
 }

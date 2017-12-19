@@ -2,19 +2,22 @@
 #include "Game.h"
 
 
-SmartGhost::SmartGhost(Game *dir, uint xI, uint yI, uint FcolI): Ghost(dir, xI, yI, FcolI)
+SmartGhost::SmartGhost(Game *dir, uint xI, uint yI):Ghost(dir, xI, yI)
 {
 
 	edad = 1;
 	adulto = false;
+	fertil = false;
 	hIni = destRect.h;
 	wIni = destRect.w;
+	Fcol = IniFcol = 8;
 	muerto = false;
 }
 SmartGhost::SmartGhost(Game *dir) : Ghost(dir)
 {
 	edad = 1;
 	adulto = false;
+	fertil = false;
 	hIni = destRect.h;
 	wIni = destRect.w;
 	Fcol = IniFcol = 8;
@@ -35,6 +38,20 @@ void SmartGhost::loadFromFile(ifstream& archivo)//Método de cargado en archivo
 {
 	Ghost::loadFromFile(archivo);
 	archivo >> edad;
+}
+
+bool SmartGhost::getFertil()
+{
+	if (fertil)
+	{
+		return true;
+	}
+	else { return false; }
+}
+
+void SmartGhost::fertilOff()
+{
+	fertil = false;
 }
 
 void SmartGhost::dirToPacman(){//Si está en la misma línea que Pacman lo sigue hasta que lo pierde 	
@@ -145,17 +162,22 @@ void SmartGhost::move()//Escoge una dirección aleatoria del vector y la aplica
 	dir.clear();//Limpia el vector de direcciones
 }
 void SmartGhost::ageManager(){
-	if (edad < 100 && !adulto){
+	if (edad < 99 && !adulto){
 		edad++;
 		destRect.h = hIni*edad / 100;
 		destRect.w = wIni*edad / 100;
+	}
+	else if (edad == 99)
+	{
+		fertil = true;
+		edad++;
 	}
 	else if (edad >= 100)
 	{
 		edad++;
 		adulto = true;
 	}
-	if (edad >= 110){
+	if (edad >= 10010){
 		vulnerabilityOn();
 		muerto = true;
 	}

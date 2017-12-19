@@ -24,7 +24,7 @@ protected:
 	clock_t startTime;
 
 public:
-	Ghost(Game *dir, uint xI, uint yI, uint FcolI);
+	Ghost(Game *dir, uint xI, uint yI);
 	Ghost(Game* dir);
 	~Ghost();
 	virtual void saveToFile(ofstream& archivo);

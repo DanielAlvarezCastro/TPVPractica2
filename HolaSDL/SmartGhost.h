@@ -9,6 +9,7 @@ private:
 	int hIni;
 	int wIni;
 	bool adulto;
+	bool fertil;
 	bool muerto;
 public:
 	virtual void update();
@@ -16,9 +17,11 @@ public:
 	virtual void searchDir();
 	virtual void move();
 	SmartGhost(Game* dir);
-	SmartGhost(Game *dir, uint xI, uint yI, uint FcolI);
+	SmartGhost(Game *dir, uint xI, uint yI);
 	~SmartGhost();
 	bool dead();
+	bool getFertil();
+	void fertilOff();
 	void ageManager();
 	virtual void saveToFile(ofstream& archivo);
 	virtual void loadFromFile(ifstream& archivo);

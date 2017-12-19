@@ -3,10 +3,9 @@
 
 
 
-GameCharacter::GameCharacter(Game *g, uint xI, uint yI, uint FcolI):GameObject(g)
+GameCharacter::GameCharacter(Game *g, uint xI, uint yI):GameObject(g)
 {
 	texture = game->pacmanText;
-	Fcol = IniFcol = FcolI;//Cordenadas dentro del SpriteSheet
 	Frow = IniFrow = 0;
 	x = xIni = xI;
 	y = yIni = yI;

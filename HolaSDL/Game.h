@@ -93,6 +93,8 @@ public:
 	bool nextCell(int x, int y, int dirX, int dirY, int& nx, int& ny);
 	int pacmanColl();
 	void handleCollision();
+	vector<int>sghostCounter();
+	void handleBirths();
 	void resetPositions();
 	void vulnerabilityOff();
 	int getPacmanLives();

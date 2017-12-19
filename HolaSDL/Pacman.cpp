@@ -1,7 +1,7 @@
 #include "Pacman.h"
 #include "Game.h"
 
-Pacman::Pacman(Game *dir, uint xI, uint yI, uint Fcol):GameCharacter(dir, xI, yI,Fcol)//Dirección al juego
+Pacman::Pacman(Game *dir, uint xI, uint yI, uint Fcol):GameCharacter(dir, xI, yI)//Dirección al juego
 {
 	lives = 3;
 }

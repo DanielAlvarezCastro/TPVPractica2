@@ -18,7 +18,7 @@ protected:
 	SDL_Rect destRect, srcRect;
 public:
 	GameCharacter(Game* g);
-	GameCharacter(Game *g, uint xI, uint yI, uint FcolI);
+	GameCharacter(Game *g, uint xI, uint yI);
 	virtual void update()=0;//Abstracto
 	virtual void render();
 	virtual void saveToFile(ofstream& archivo);
