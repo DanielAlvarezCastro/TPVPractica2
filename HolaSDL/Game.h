@@ -54,7 +54,7 @@ public:
 
 
 	vector<GameObject*> gameObjects;
-
+	Pacman* p;
 
 
 	//Texturas

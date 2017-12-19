@@ -197,7 +197,7 @@ void Game::createMap(ifstream& archivo)//Lee de un archivo y crea la matriz del 
 			gameObjects[i]->loadFromFile(archivo);
 		}
 	}
-	Pacman* p = new Pacman(this);
+	p = new Pacman(this);
 	gameObjects.push_back(p);
 	gameObjects[gameObjects.size()- 1]->loadFromFile(archivo);
 	archivo.close();
@@ -421,6 +421,7 @@ void Game::handleCollision(){//Gestiona las colisiones entre Pacman y los fantas
 	int coll = pacmanColl();
 	if (coll != 0)
 	{
+		
 		if (!static_cast<Ghost*>(gameObjects[coll])->getVulnerability())//Si el fantasma en cuestión es invulnerable, Pacman pierde una vida
 		{
 			static_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->die();

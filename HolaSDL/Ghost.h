@@ -39,6 +39,7 @@ public:
 
 	void vulnerabilityOn();
 	void vulnerabilityOff();
+	void handleVulnerability();
 
 	void searchDir();
 	void move();

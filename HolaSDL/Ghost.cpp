@@ -100,8 +100,7 @@ void Ghost::searchDir()//REllena un vector con las direcciones posibles para el 
 	}
 }
 void Ghost::move()//Escoge una dirección aleatoria del vector y la aplica
-{
-	searchDir();
+{	
 	if (dir.size() == 0)//Si el tamaño del vector es 0, pone a 0 las direcciones para que vuelva a buscar
 	{
 		dirX = 0;
@@ -133,10 +132,7 @@ void Ghost::move()//Escoge una dirección aleatoria del vector y la aplica
 	}
 	dir.clear();//Limpia el vector de direcciones
 }
-void Ghost::update(){//Maneja el movimiento, la posición del sprite en pantalla y lleva un contador de vulnerabilidad
-	move();
-	destRect.x = x*w;
-	destRect.y = y*h;
+void Ghost::handleVulnerability(){
 	if (vulnerable && (clock() - startTime) / CLOCKS_PER_SEC >= 5){//Si es vulnerable llama a un contador
 		vulnerabilityOff();//Después de 5 segundos se vuelve invulnerable
 	}
@@ -144,6 +140,13 @@ void Ghost::update(){//Maneja el movimiento, la posición del sprite en pantalla 
 		standardAnimation();
 	}
 	else blueAnimation();
+}
+void Ghost::update(){//Maneja el movimiento, la posición del sprite en pantalla y lleva un contador de vulnerabilidad
+	searchDir();
+	move();
+	destRect.x = x*w;
+	destRect.y = y*h;
+	handleVulnerability();	
 }
 
 
