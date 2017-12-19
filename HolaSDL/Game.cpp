@@ -416,6 +416,7 @@ int Game::getPacmanLives()
 }
 void Game::vulnerabilityOff()
 {
+	
 	for (int i = 1; i < gameObjects.size() - 1; i++)
 	{
 		static_cast<Ghost*>(gameObjects[i])->vulnerabilityOn();
@@ -435,6 +436,7 @@ int Game::pacmanColl()
 	}
 	return 0;
 }
+
 void Game::handleCollision(){//Gestiona las colisiones entre Pacman y los fantasmas
 	int coll = pacmanColl();
 	if (coll != 0)
@@ -449,8 +451,14 @@ void Game::handleCollision(){//Gestiona las colisiones entre Pacman y los fantas
 		}
 		else
 		{
-			static_cast<GameCharacter*>(gameObjects[coll])->backToIni();
-			static_cast<Ghost*>(gameObjects[coll])->vulnerabilityOff();
+			if (static_cast<SmartGhost*>(gameObjects[coll])->dead()){
+				gameObjects.erase(gameObjects.begin() + coll);
+				
+			}
+			else {
+				static_cast<GameCharacter*>(gameObjects[coll])->backToIni();
+				static_cast<Ghost*>(gameObjects[coll])->vulnerabilityOff();
+			}
 			addScore(100);
 		}
 	}

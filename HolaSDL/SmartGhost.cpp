@@ -69,6 +69,9 @@ void SmartGhost::dirToPacman(){//Si está en la misma línea que Pacman lo sigue h
 	
 
 }
+bool SmartGhost::dead(){
+	return muerto;
+}
 void SmartGhost::searchDir(){
 
  	int nx = 0;

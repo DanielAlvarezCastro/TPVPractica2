@@ -18,6 +18,7 @@ public:
 	SmartGhost(Game* dir);
 	SmartGhost(Game *dir, uint xI, uint yI, uint FcolI);
 	~SmartGhost();
+	bool dead();
 	void ageManager();
 	virtual void saveToFile(ofstream& archivo);
 	virtual void loadFromFile(ifstream& archivo);
