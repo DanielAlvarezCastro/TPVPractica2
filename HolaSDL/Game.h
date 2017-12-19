@@ -10,6 +10,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include "MainMenu.h"
 #include "GameObject.h"
 #include "checkML.h";
 #include <typeinfo>
@@ -26,6 +27,8 @@ private:
 	bool gameover = false;
 
 	SDL_Event event;
+
+	MainMenu* menu;
 
 	int score;
 	SDL_Color white;

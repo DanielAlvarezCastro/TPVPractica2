@@ -334,12 +334,30 @@ void Game::render(){//Aplica el render del mapa, de las vidas, y de las entidade
 	SDL_RenderPresent(renderer);
 }
 void Game::run(){//Controla el bucle del juego
-	userinterface->menuRender();//Pinta la página principal
-	while (!exitMenu){//Este bucle controla la pulsación del menú
-		menuEvents();
+	//userinterface->menuRender();//Pinta la página principal
+	bool load = false;
+	string code = "";
+	menu = new MainMenu(this);
+	while (!menu->exit)
+	{
+		menu->handleEvents();
+		menu->render();
 	}
+	if (menu->saving)
+	{
+		load = true;
+		code = menu->codeN;
+	}
+	delete menu;
 	while (level < 6 && !exit){//Este bucle controla que no se salga o se haya superado el nivel máximo
-		nextLevel();//Selecciona el siguiente nivel (Empieza en 1)
+		if (load)
+		{
+			loadSave(code);
+			load = false;
+		}
+		else{
+			nextLevel();//Selecciona el siguiente nivel (Empieza en 1)
+		}
 		SDL_Delay(1000);
 		while (!exitlevel){//Bucle de la pantalla de juego
 				handleEvents();
