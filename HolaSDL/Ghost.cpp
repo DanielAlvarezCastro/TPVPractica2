@@ -6,14 +6,17 @@
 Ghost::Ghost(Game *dir, uint xI, uint yI):GameCharacter(dir, xI, yI)
 {
 	vulnerable = false;
+	srand(time(NULL));
+	bFrow = 0;
+	bFcol = 12;
 }
-Ghost::Ghost(Game *dir) :GameCharacter(dir)
+Ghost::Ghost(Game *dir, int iCol) :GameCharacter(dir)
 {
 	vulnerable = false;
 	srand(time(NULL));
 	bFrow = 0;
 	bFcol = 12;
-	Fcol=IniFcol = 0;
+	Fcol=IniFcol = iCol;
 }
 
 Ghost::~Ghost()

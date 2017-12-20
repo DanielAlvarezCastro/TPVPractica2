@@ -25,7 +25,7 @@ protected:
 
 public:
 	Ghost(Game *dir, uint xI, uint yI);
-	Ghost(Game* dir);
+	Ghost(Game* dir, int iCol);
 	~Ghost();
 	virtual void saveToFile(ofstream& archivo);
 	virtual void loadFromFile(ifstream& archivo);

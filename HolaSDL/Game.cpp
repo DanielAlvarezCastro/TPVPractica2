@@ -1,4 +1,4 @@
-#include "Game.h"
+   #include "Game.h"
 #include <fstream>
 
 
@@ -160,7 +160,7 @@ void Game::nextLevel(){//Controla el nivel que se va a cargar
 	else exit = true;
 	//SDL_PointInRect()
 }
-void Game::loadSave(string filename)
+void Game::loadSave(string filename)//Carga una partida guardada
 {
 	ifstream archivo;
 	gameObjects.clear();
@@ -170,7 +170,7 @@ void Game::loadSave(string filename)
 	createMap(archivo);
 }
 
-void Game::loadLevel(string filename)
+void Game::loadLevel(string filename)//Carga un nivel nuevo
 {
 	ifstream archivo;
 	gameObjects.clear();
@@ -197,7 +197,7 @@ void Game::createMap(ifstream& archivo)//Lee de un archivo y crea la matriz del 
 		}
 		else
 		{
-			Ghost* g = new Ghost(this);
+			Ghost* g = new Ghost(this, (i%4)*2);
 			gameObjects.push_back(g);
 			gameObjects[i]->loadFromFile(archivo);
 		}
@@ -300,7 +300,7 @@ void Game::handleEvents()//Comprueba eventos
 	}
 }
 
-void Game::addScore(int cuantity)
+void Game::addScore(int cuantity)//Añade puntuación y refresca el marcador
 {
 	score += cuantity;
 	string scoreSTR = "Score:" + to_string(score)+ " ";
@@ -419,7 +419,7 @@ bool Game::nextCell(int x, int y, int dirX, int dirY, int& nx, int& ny)//Si la s
 	}
 	else return false;
 }
-int Game::getPacmanLives()
+int Game::getPacmanLives()//Devuelve las vidas del Pacman
 {
 	return static_cast<Pacman*>(gameObjects[gameObjects.size()-1])->getLives();
 }
@@ -432,7 +432,7 @@ void Game::vulnerabilityOff()
 	}
 }
 
-vector<int> Game::sghostCounter()
+vector<int> Game::sghostCounter()//Enumera y almacena los SmartGhost fétiles
 {
 	
 	vector<int> ghost(0);
@@ -449,7 +449,7 @@ vector<int> Game::sghostCounter()
 	return ghost;
 }
 
-void Game::handleBirths()
+void Game::handleBirths()//Comprueba si se han cruzado dos SmartGhost fétiles y crea el nuevo
 {
 	vector<int> ghost = sghostCounter();
 	int x, y;
@@ -503,7 +503,7 @@ void Game::handleBirths()
 	}
 }
 
-int Game::pacmanColl()
+int Game::pacmanColl()//Comprueba si algun fantasma ha colisionado con el Pacman
 {
 	int i = 1;
 	while(i < gameObjects.size()- 1)

@@ -13,14 +13,13 @@ SmartGhost::SmartGhost(Game *dir, uint xI, uint yI):Ghost(dir, xI, yI)
 	Fcol = IniFcol = 8;
 	muerto = false;
 }
-SmartGhost::SmartGhost(Game *dir) : Ghost(dir)
+SmartGhost::SmartGhost(Game *dir) : Ghost(dir, 8)
 {
 	edad = 1;
 	adulto = false;
 	fertil = false;
 	hIni = destRect.h;
 	wIni = destRect.w;
-	Fcol = IniFcol = 8;
 	muerto = false;
 }
 
@@ -177,19 +176,27 @@ void SmartGhost::ageManager(){
 		edad++;
 		adulto = true;
 	}
-	if (edad >= 10010){
+	if (edad >= 300){
 		vulnerabilityOn();
 		muerto = true;
 	}
 }
 void SmartGhost::update()
-{	
-	if (!muerto){
-		move();		
+{
+	if (!adulto)
+	{
+		Ghost::update();
 	}
-	destRect.x = x*w;
-	destRect.y = y*h;
-	Ghost::handleVulnerability();
+	else
+	{
+		if (!muerto){
+
+			move();
+		}
+		destRect.x = x*w;
+		destRect.y = y*h;
+		Ghost::handleVulnerability();
+	}
 	ageManager();
 }
 

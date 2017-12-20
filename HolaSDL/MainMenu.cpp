@@ -56,7 +56,7 @@ void MainMenu::render()
 	option2->render(game->renderer, optionPos2);
 	SDL_RenderPresent(game->renderer);
 }
-void MainMenu::handleEvents()
+void MainMenu::handleEvents()//Copruba eventos
 {
 	while (SDL_PollEvent(&event) && !exit)
 	{
