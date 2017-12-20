@@ -25,8 +25,8 @@ MainMenu::MainMenu(Game* g)
 	optionPos.x = optionPos2.x = 200;
 	optionPos.y = 350;
 	optionPos2.y = 475;
-	yellow.a = yellow.b = yellow.g = 255;
-	yellow.r = 0;
+	yellow.a = yellow.r = yellow.g = 255;
+	yellow.b = 0;
 
 	menuFont = new Font("..\\fonts\\Quicksilver.ttf", 100);
 	backGround->load(game->renderer, "..\\images\\bluePanel.png", 1, 1);

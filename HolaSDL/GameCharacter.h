@@ -9,7 +9,6 @@ class GameCharacter: public GameObject
 private:
 	Texture* texture;
 protected:
-	virtual ~GameCharacter();
 	int x, y, w, h, xIni, yIni;
 	int nx, ny;//La posición siguiente calculada
 	int dirX, dirY, ndirX, ndirY;
@@ -19,6 +18,7 @@ protected:
 public:
 	GameCharacter(Game* g);
 	GameCharacter(Game *g, uint xI, uint yI);
+	virtual ~GameCharacter();
 	virtual void update()=0;//Abstracto
 	virtual void render();
 	virtual void saveToFile(ofstream& archivo);

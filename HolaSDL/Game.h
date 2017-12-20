@@ -88,6 +88,7 @@ public:
 	void update();
 	void render();
 	void run();
+	void resetGame();
 
 
 	bool nextCell(int x, int y, int dirX, int dirY, int& nx, int& ny);

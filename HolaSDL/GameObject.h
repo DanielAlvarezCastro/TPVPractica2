@@ -9,11 +9,11 @@ class GameObject//Clase abstacta pura que engloba la jerarquía
 {
 protected:
 	Game* game;
-	virtual ~GameObject();
 
 public:
 	GameObject(Game *g);
 	//Metodos abstractos
+	virtual ~GameObject();
 	virtual void render()=0;
 	virtual void update()=0;
 	virtual void saveToFile(ofstream& archivo)=0;

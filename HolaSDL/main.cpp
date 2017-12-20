@@ -1,4 +1,5 @@
-
+//Daniel Álvarez Castro
+//Gabriel Aramis Sardaneta del Collado
 #include "SDL.h"
 #include "SDL_image.h"
 #include <iostream>

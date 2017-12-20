@@ -1,4 +1,4 @@
-   #include "Game.h"
+#include "Game.h"
 #include <fstream>
 
 
@@ -66,13 +66,8 @@ Game::~Game()
 {
 	//Borra el SpriteSheet
 	delete pacmanText;
-	static_cast<GameMap*>(gameObjects[0])->~GameMap();
-	for (int i = 1; i < gameObjects.size()-1; i++)
-	{
-		static_cast<Ghost*>(gameObjects[i])->~Ghost();
-	}
-	static_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->~Pacman();
-	gameObjects.clear();
+	
+	resetGame();
 	delete userinterface;
 	delete screenFont;
 	delete scoreText;
@@ -85,6 +80,14 @@ Game::~Game()
 
 }
 
+void Game::resetGame()
+{
+	for (int i = 0; i < gameObjects.size(); i++)
+	{
+		delete gameObjects[i];
+	}
+	gameObjects.clear();
+}
 int Game::getRows()//Pide las filas
 {
 	return static_cast<GameMap*>(gameObjects[0])->getRows();
@@ -168,12 +171,13 @@ void Game::loadSave(string filename)//Carga una partida guardada
 	archivo >> level;
 	archivo >> score;
 	createMap(archivo);
+	userinterface->setLifeSize();
 }
 
 void Game::loadLevel(string filename)//Carga un nivel nuevo
 {
 	ifstream archivo;
-	gameObjects.clear();
+	resetGame();
 	archivo.open("..\\levels\\" + filename + ".pac");
 	createMap(archivo);
 }
@@ -293,7 +297,9 @@ void Game::handleEvents()//Comprueba eventos
 						gameObjects[i]->saveToFile(archivo);
 						archivo << endl;
 					}
-					codeN = "";
+					codeN = " ";
+					saveCode->loadFromText(renderer, codeN, screenFont, white);
+
 				}
 				
 			}
@@ -452,6 +458,7 @@ vector<int> Game::sghostCounter()//Enumera y almacena los SmartGhost fétiles
 void Game::handleBirths()//Comprueba si se han cruzado dos SmartGhost fétiles y crea el nuevo
 {
 	vector<int> ghost = sghostCounter();
+	bool posFind = false;;
 	int x, y;
 	if (ghost.size() >= 2)
 	{
@@ -466,36 +473,32 @@ void Game::handleBirths()//Comprueba si se han cruzado dos SmartGhost fétiles y 
 					y = static_cast<Ghost*>(gameObjects[ghost[i]])->getPosY();
 					if (static_cast<GameMap*>(gameObjects[0])->cells[y + 1][x] != Wall)
 					{
-						SmartGhost* sg = new SmartGhost(this, x, y + 1);
+						y = y + 1;
+						posFind = true;
+
+					}
+					else if (static_cast<GameMap*>(gameObjects[0])->cells[y - 1][x] != Wall)
+					{
+						y = y - 1;
+						posFind = true;
+					}
+					else if (static_cast<GameMap*>(gameObjects[0])->cells[y][x + 1] != Wall)
+					{
+						x = x + 1;
+						posFind = true;
+					}
+					else if (static_cast<GameMap*>(gameObjects[0])->cells[y][x - 1] != Wall)
+					{	
+						x = x - 1;
+						posFind = true;
+					}
+					if (posFind){
+						SmartGhost* sg = new SmartGhost(this, x, y);
 						gameObjects.push_back(gameObjects[gameObjects.size() - 1]);
 						gameObjects[gameObjects.size() - 2] = sg;
 						static_cast<SmartGhost*>(gameObjects[ghost[i]])->fertilOff();
 						static_cast<SmartGhost*>(gameObjects[ghost[j]])->fertilOff();
 
-					}
-					else if (static_cast<GameMap*>(gameObjects[0])->cells[y - 1][x] != Wall)
-					{
-						SmartGhost* sg = new SmartGhost(this, x, y - 1);
-						gameObjects.push_back(gameObjects[gameObjects.size() - 1]);
-						gameObjects[gameObjects.size() - 2] = sg;
-						static_cast<SmartGhost*>(gameObjects[ghost[i]])->fertilOff();
-						static_cast<SmartGhost*>(gameObjects[ghost[j]])->fertilOff();
-					}
-					else if (static_cast<GameMap*>(gameObjects[0])->cells[y][x + 1] != Wall)
-					{
-						SmartGhost* sg = new SmartGhost(this, x + 1, y);
-						gameObjects.push_back(gameObjects[gameObjects.size() - 1]);
-						gameObjects[gameObjects.size() - 2] = sg;
-						static_cast<SmartGhost*>(gameObjects[ghost[i]])->fertilOff();
-						static_cast<SmartGhost*>(gameObjects[ghost[j]])->fertilOff();
-					}
-					else if (static_cast<GameMap*>(gameObjects[0])->cells[y][x - 1] != Wall)
-					{
-						SmartGhost* sg = new SmartGhost(this, x - 1, y);
-						gameObjects.push_back(gameObjects[gameObjects.size() - 1]);
-						gameObjects[gameObjects.size() - 2] = sg;
-						static_cast<SmartGhost*>(gameObjects[ghost[i]])->fertilOff();
-						static_cast<SmartGhost*>(gameObjects[ghost[j]])->fertilOff();
 					}
 				}
 			}
