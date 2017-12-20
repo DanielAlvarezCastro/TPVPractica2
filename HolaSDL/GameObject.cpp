@@ -9,7 +9,6 @@ GameObject::GameObject(Game *g)
 
 GameObject::~GameObject()
 {
-	//delete game;
 }
 
 

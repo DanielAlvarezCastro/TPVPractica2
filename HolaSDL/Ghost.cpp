@@ -18,7 +18,6 @@ Ghost::Ghost(Game *dir) :GameCharacter(dir)
 
 Ghost::~Ghost()
 {
-
 }
 void Ghost::saveToFile(ofstream& archivo)//Método de guardado en archivo
 {

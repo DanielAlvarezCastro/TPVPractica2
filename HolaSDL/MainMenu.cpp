@@ -44,6 +44,7 @@ MainMenu::~MainMenu()
 	delete title;
 	delete option1;
 	delete option2;
+	delete menuFont;
 }
 
 void MainMenu::render()

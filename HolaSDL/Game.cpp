@@ -66,10 +66,15 @@ Game::~Game()
 {
 	//Borra el SpriteSheet
 	delete pacmanText;
-
-
+	static_cast<GameMap*>(gameObjects[0])->~GameMap();
+	for (int i = 1; i < gameObjects.size()-1; i++)
+	{
+		static_cast<Ghost*>(gameObjects[i])->~Ghost();
+	}
+	static_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->~Pacman();
+	gameObjects.clear();
 	delete userinterface;
-
+	delete screenFont;
 	delete scoreText;
 	delete savePanel;
 	delete saveText;
