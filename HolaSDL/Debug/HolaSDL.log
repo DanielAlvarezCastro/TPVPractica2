@@ -1,20 +1,131 @@
-﻿Build started 20/12/2017 18:11:23.
-     1>Project "C:\hlocal\TPVPractica2\HolaSDL\HolaSDL.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         C:\software\programacion\MSVStudio2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\hlocal\TPVPractica2\bin\HolaSDLDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\hlocal\TPVPractica2\bin\HolaSDLDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\hlocal\TPVPractica2\bin\HolaSDLDebug.lib" /MACHINE:X86 Debug\Game.obj
-         Debug\GameCharacter.obj
-         Debug\GameMap.obj
-         Debug\GameObject.obj
-         Debug\Ghost.obj
-         Debug\main.obj
-         Debug\MainMenu.obj
-         Debug\Pacman.obj
-         Debug\SmartGhost.obj
-         Debug\Texture.obj
-         Debug\UserInterface.obj
-         HolaSDL.vcxproj -> C:\hlocal\TPVPractica2\bin\HolaSDLDebug.exe
-     1>Done Building Project "C:\hlocal\TPVPractica2\HolaSDL\HolaSDL.vcxproj" (Build target(s)).
+﻿Compilación iniciada a las 10/01/2018 15:47:50.
+     1>Proyecto "C:\hlocal\TPVPractica2-3\HolaSDL\HolaSDL.vcxproj" en el nodo 2 (Build destinos).
+     1>ClCompile:
+         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Game.cpp GameCharacter.cpp GameMap.cpp GameObject.cpp GameState.cpp GameStateMachine.cpp Ghost.cpp main.cpp MainMenu.cpp MainMenuState.cpp Pacman.cpp PauseState.cpp PlayState.cpp SmartGhost.cpp Texture.cpp UserInterface.cpp
+         UserInterface.cpp
+     1>c:\hlocal\tpvpractica2-3\holasdl\texture.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.h(15): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+         Texture.cpp
+     1>c:\hlocal\tpvpractica2-3\holasdl\texture.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+         SmartGhost.cpp
+     1>c:\hlocal\tpvpractica2-3\holasdl\texture.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.h(15): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+         PlayState.cpp
+     1>c:\hlocal\tpvpractica2-3\holasdl\playstate.h(4): error C2653: 'PlayState' : no es un nombre de clase o espacio de nombres
+     1>c:\hlocal\tpvpractica2-3\holasdl\playstate.h(4): error C2589: 'public' : símbolo (token) no válido en el lado derecho de '::'
+     1>c:\hlocal\tpvpractica2-3\holasdl\playstate.h(4): error C2143: error de sintaxis : falta ';' delante de '::'
+     1>c:\hlocal\tpvpractica2-3\holasdl\playstate.h(4): error C2059: error de sintaxis : '::'
+     1>c:\hlocal\tpvpractica2-3\holasdl\playstate.h(5): error C2143: error de sintaxis : falta ';' delante de '{'
+     1>c:\hlocal\tpvpractica2-3\holasdl\playstate.h(5): error C2447: '{' : falta el encabezado de función (¿lista formal de estilo anterior?)
+     1>c:\hlocal\tpvpractica2-3\holasdl\playstate.cpp(4): error C2027: uso del tipo 'PlayState' sin definir
+                 c:\hlocal\tpvpractica2-3\holasdl\playstate.h(4) : vea la declaración de 'PlayState'
+     1>c:\hlocal\tpvpractica2-3\holasdl\playstate.cpp(4): error C2059: error de sintaxis : ')'
+     1>c:\hlocal\tpvpractica2-3\holasdl\playstate.cpp(5): error C2143: error de sintaxis : falta ';' delante de '{'
+     1>c:\hlocal\tpvpractica2-3\holasdl\playstate.cpp(5): error C2447: '{' : falta el encabezado de función (¿lista formal de estilo anterior?)
+     1>c:\hlocal\tpvpractica2-3\holasdl\playstate.cpp(9): error C2027: uso del tipo 'PlayState' sin definir
+                 c:\hlocal\tpvpractica2-3\holasdl\playstate.h(4) : vea la declaración de 'PlayState'
+     1>c:\hlocal\tpvpractica2-3\holasdl\playstate.cpp(9): error C2059: error de sintaxis : ')'
+     1>c:\hlocal\tpvpractica2-3\holasdl\playstate.cpp(10): error C2143: error de sintaxis : falta ';' delante de '{'
+     1>c:\hlocal\tpvpractica2-3\holasdl\playstate.cpp(10): error C2447: '{' : falta el encabezado de función (¿lista formal de estilo anterior?)
+         PauseState.cpp
+     1>c:\hlocal\tpvpractica2-3\holasdl\texture.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+         Pacman.cpp
+     1>c:\hlocal\tpvpractica2-3\holasdl\texture.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.h(15): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+         MainMenuState.cpp
+     1>c:\hlocal\tpvpractica2-3\holasdl\texture.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+         MainMenu.cpp
+     1>c:\hlocal\tpvpractica2-3\holasdl\texture.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.h(15): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+         main.cpp
+     1>c:\hlocal\tpvpractica2-3\holasdl\texture.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.h(15): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+         Ghost.cpp
+     1>c:\hlocal\tpvpractica2-3\holasdl\texture.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\ghost.cpp(2): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.h(15): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\ghost.cpp(9): warning C4244: 'argumento' : conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+     1>c:\hlocal\tpvpractica2-3\holasdl\ghost.cpp(16): warning C4244: 'argumento' : conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+         GameStateMachine.cpp
+         GameState.cpp
+     1>c:\hlocal\tpvpractica2-3\holasdl\texture.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.h(15): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamestate.cpp(16): error C2065: 'gameObjects' : identificador no declarado
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamestate.cpp(16): error C2228: el operando izquierdo de '.size' debe tener class/struct/union
+                 el tipo es 'unknown-type'
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamestate.cpp(18): error C2065: 'gameObjects' : identificador no declarado
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamestate.cpp(18): error C2227: el operando izquierdo de '->update' debe señalar al tipo class/struct/union/generic
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamestate.cpp(23): error C2065: 'gameObjects' : identificador no declarado
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamestate.cpp(23): error C2228: el operando izquierdo de '.size' debe tener class/struct/union
+                 el tipo es 'unknown-type'
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamestate.cpp(25): error C2065: 'gameObjects' : identificador no declarado
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamestate.cpp(25): error C2227: el operando izquierdo de '->render' debe señalar al tipo class/struct/union/generic
+         GameObject.cpp
+     1>c:\hlocal\tpvpractica2-3\holasdl\texture.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.h(15): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+         GameMap.cpp
+     1>c:\hlocal\tpvpractica2-3\holasdl\texture.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.h(15): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.cpp(13): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.cpp(29): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.cpp(68): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.cpp(70): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.cpp(108): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.cpp(110): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.cpp(143): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.cpp(149): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.cpp(151): warning C4018: '<' : no coinciden signed/unsigned
+         GameCharacter.cpp
+     1>c:\hlocal\tpvpractica2-3\holasdl\texture.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.h(15): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+         Game.cpp
+     1>c:\hlocal\tpvpractica2-3\holasdl\texture.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.h(15): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.cpp(85): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.cpp(295): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.cpp(335): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.cpp(435): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.cpp(445): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.cpp(465): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.cpp(467): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.cpp(512): warning C4018: '<' : no coinciden signed/unsigned
+     1>c:\hlocal\tpvpractica2-3\holasdl\game.cpp(552): warning C4018: '<' : no coinciden signed/unsigned
+         Generando código...
+     1>Compilación del proyecto terminada "C:\hlocal\TPVPractica2-3\HolaSDL\HolaSDL.vcxproj" (Build destinos) -- ERROR.
 
-Build succeeded.
+ERROR al compilar.
 
-Time Elapsed 00:00:00.23
+Tiempo transcurrido 00:00:05.65

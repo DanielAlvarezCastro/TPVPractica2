@@ -26,7 +26,6 @@ Game::Game()
 		//Lo carga
 		pacmanText->load(renderer, "..\\images\\characters1.png", 4, 14);
 		screenFont= new Font("..\\fonts\\Kiloton v1.0.ttf", 50);
-		white.a = 255;
 		//Inicializa Texturas de Interfaz
 		scoreText = new Texture();
 		saveCode = new Texture();
@@ -36,6 +35,7 @@ Game::Game()
 		savePanel->load(renderer, "..\\images\\bluePanel.png", 1, 1);
 		saveText->loadFromText(renderer, "Create save code", screenFont, white);
 
+		white.a = 255;
 		white.g = 255;
 		white.b = 255;
 		white.r = 255;
