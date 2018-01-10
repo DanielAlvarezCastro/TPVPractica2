@@ -19,11 +19,11 @@ private:
 	uint rows;
 	uint cols;
 	uint walls;
-	uint foods;
-	uint vitamins;
 
 public:
 
+	uint foods;
+	uint vitamins;
 	MapCell** cells;
 	GameMap(Game* dir, uint rows, uint cols);
 	GameMap(Game* dir);

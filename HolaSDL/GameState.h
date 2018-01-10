@@ -4,6 +4,7 @@
 #include <vector>
 #include "GameObject.h"
 #include "SDL_ttf.h"
+#include "UserInterface.h"
 
 using namespace std;
 class Game;

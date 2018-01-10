@@ -13,5 +13,6 @@ public:
 	~EndState();
 	void render();
 	void handleEvent(SDL_Event& e);
+	void update(){};
 };
 

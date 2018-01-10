@@ -21,6 +21,9 @@ Game::Game()
 	}
 	else
 	{
+		stateMachine = new GameStateMachine();
+		MainMenuState* mm = new MainMenuState(this);
+		stateMachine->pushState(mm);
 		//Inicializa Textura del SpriteSheet
 		pacmanText = new Texture();
 		//Lo carga
@@ -223,6 +226,12 @@ void Game::handleEvents()//Comprueba eventos
 			exit = true;
 			exitlevel = true;
 		}
+
+		else
+		{
+			stateMachine->currentState()->handleEvent(event);
+		}
+		/*
 		else if (event.type == SDL_KEYDOWN && !saving){
 			if (event.key.keysym.sym == SDLK_DOWN){
 				static_cast<Pacman*>(gameObjects[gameObjects.size()-1])->changeDir('d');
@@ -302,7 +311,7 @@ void Game::handleEvents()//Comprueba eventos
 
 				}
 				
-			}
+			}*/
 	}
 }
 
@@ -332,6 +341,7 @@ void Game::update(){//Controla los updates de las entidades y comprueba si ha ha
 }
 void Game::render(){//Aplica el render del mapa, de las vidas, y de las entidades
 	SDL_RenderClear(renderer);
+	/*
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
 		gameObjects[i]->render();
@@ -345,9 +355,19 @@ void Game::render(){//Aplica el render del mapa, de las vidas, y de las entidade
 		savePanel->render(renderer, spanelPos);
 		saveText->render(renderer, stextPos);
 		saveCode->render(renderer, scodePos);
-	}
+	}*/
+	stateMachine->currentState()->render();
 	SDL_RenderPresent(renderer);
 }
+void Game::run()//Controla el bucle del juego
+	{
+		while (!exit){
+			handleEvents();
+			stateMachine->currentState()->update();
+			render();
+		}
+	}
+/*
 void Game::run(){//Controla el bucle del juego
 	//userinterface->menuRender();//Pinta la página principal
 	bool load = false;
@@ -397,7 +417,7 @@ void Game::run(){//Controla el bucle del juego
 		}
 		SDL_Delay(1000);
 	}
-}
+}*/
 
 bool Game::nextCell(int x, int y, int dirX, int dirY, int& nx, int& ny)//Si la siguiente posición es una pared devuelve false
 {

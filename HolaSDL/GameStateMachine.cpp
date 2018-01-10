@@ -10,20 +10,26 @@ GameStateMachine::~GameStateMachine()
 {
 }
 
-void GameStateMachine::currentState(){}
+GameState* GameStateMachine::currentState()
+{
+	return stateStack.top();
+}
 
 void GameStateMachine::pushState(GameState* ge)
 {
 	stateStack.push(ge);
 }
 
-void GameStateMachine::popState()
+GameState* GameStateMachine::popState()
 {
+	GameState* gs = stateStack.top();
 	stateStack.pop();
+	return gs;
 }
 
 void GameStateMachine::changeState(GameState* ge)
 {
-	popState();
+	GameState* gs =popState();
+	delete gs;
 	pushState(ge);
 }

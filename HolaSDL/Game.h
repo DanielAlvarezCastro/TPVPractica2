@@ -14,6 +14,11 @@
 #include "GameObject.h"
 #include "checkML.h";
 #include <typeinfo>
+#include "GameStateMachine.h"
+#include "MainMenuState.h"
+#include "PauseState.h"
+#include "EndState.h"
+#include "PlayState.h"
 
 using namespace std;
 class Game
@@ -53,16 +58,16 @@ private:
 	uint level;
 	UserInterface* userinterface;
 
+
+	GameStateMachine* stateMachine;
+
 public:
 
 
 	vector<GameObject*> gameObjects;
 	Pacman* p;
 
-
-	//Texturas
 	Texture* pacmanText;
-	//Fin Texturas
 
 	SDL_Renderer* renderer;
 	Game();

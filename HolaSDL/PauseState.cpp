@@ -35,6 +35,9 @@ PauseState::PauseState(Game* g):GameState(g)
 
 PauseState::~PauseState()
 {
+	delete savePanel;
+	delete saveText;
+	delete saveCode;
 }
 void PauseState::handleEvent(SDL_Event& e)
 {

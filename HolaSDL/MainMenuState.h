@@ -32,5 +32,6 @@ public:
 	~MainMenuState();
 	void render();
 	void handleEvent(SDL_Event& e);
+	void update(){};
 };
 

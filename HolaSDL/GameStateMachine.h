@@ -10,10 +10,10 @@ private:
 public:
 	GameStateMachine();
 	~GameStateMachine();
-	void currentState();
+	GameState* currentState();
 	void pushState(GameState* ge);
 	void changeState(GameState* ge);
-	void popState();
+	GameState* popState();
 
 };
 
