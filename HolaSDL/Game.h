@@ -10,7 +10,6 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include "MainMenu.h"
 #include "GameObject.h"
 #include "checkML.h";
 #include <typeinfo>
@@ -20,6 +19,10 @@
 #include "EndState.h"
 #include "PlayState.h"
 #include <stdexcept>
+#include "FileFormatError.h"
+#include "PacManError.h"
+#include "FileNotFoundError.h"
+#include "SDLError.h"
 
 using namespace std;
 class Game
@@ -27,7 +30,6 @@ class Game
 private:
 	SDL_Window* window;
 	bool error = false;//Flag para errores
-	bool exit = false;
 	SDL_Event event;
 	int winX, winY;
 	const int winWidth = 800;
@@ -37,6 +39,7 @@ private:
 public:
 
 
+	bool exit = false;
 	vector<GameObject*> gameObjects;
 	Pacman* p;
 

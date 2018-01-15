@@ -24,6 +24,10 @@ void Pacman::loadFromFile(ifstream& archivo)//Método de cargado en archivo
 {
 	GameCharacter::loadFromFile(archivo);
 	archivo >> lives;
+	if (lives > 3)
+	{
+		throw FileFormatError("Vidas invalidas");
+	}
 }
 int Pacman::getLives(){//Devuelve las vidas actuales
 	return lives;

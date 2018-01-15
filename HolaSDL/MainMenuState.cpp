@@ -10,10 +10,15 @@ MainMenuState::MainMenuState(Game* g) : GameState(g)
 	title = new Texture();
 	option1 = new Texture();
 	option2 = new Texture();
+	quit = new Texture();
 
 	bgPos.x = bgPos.y = 0;
 	bgPos.h = game->getWinH();
 	bgPos.w = game->getWinW();
+	quitB.h = 50;
+	quitB.w = 100;
+	quitB.x = 650;
+	quitB.y = 500;
 	titlePos.h = 200;
 	titlePos.w = 600;
 	titlePos.x = 100;
@@ -27,10 +32,18 @@ MainMenuState::MainMenuState(Game* g) : GameState(g)
 	yellow.b = 0;
 
 	menuFont = new Font("..\\fonts\\Quicksilver.ttf", 100);
-	backGround->load(game->renderer, "..\\images\\bluePanel.png", 1, 1);
-	title->loadFromText(game->renderer, "PACMAN", menuFont, yellow);
-	option1->loadFromText(game->renderer, "New Game", menuFont, yellow);
-	option2->loadFromText(game->renderer, "Load File", menuFont, yellow);
+	try{
+
+		backGround->load(game->renderer, "..\\images\\bluePanel.png", 1, 1);
+		title->loadFromText(game->renderer, "PACMAN", menuFont, yellow);
+		option1->loadFromText(game->renderer, "New Game", menuFont, yellow);
+		option2->loadFromText(game->renderer, "Load File", menuFont, yellow);
+		quit->loadFromText(game->renderer, "exit", menuFont, yellow);
+	}
+	catch (SDLError& e)
+	{
+		cout << e.what() << endl;
+	}
 }
 
 
@@ -50,6 +63,7 @@ void MainMenuState::render()
 	title->render(game->renderer, titlePos);
 	option1->render(game->renderer, optionPos);
 	option2->render(game->renderer, optionPos2);
+	quit->render(game->renderer, quitB);
 	SDL_RenderPresent(game->renderer);
 }
 void MainMenuState::handleEvent(SDL_Event& e)
@@ -73,6 +87,10 @@ void MainMenuState::handleEvent(SDL_Event& e)
 				option1->loadFromText(game->renderer, " ", menuFont, yellow);
 				option1->render(game->renderer, optionPos);
 				option2->loadFromText(game->renderer, "Press Enter", menuFont, yellow);
+			}
+			else if (SDL_PointInRect(&mouse, &quitB))
+			{
+				game->exit = true;
 			}
 		}
 		else
@@ -109,10 +127,29 @@ void MainMenuState::handleEvent(SDL_Event& e)
 			}
 			else if (e.key.keysym.sym == SDLK_RETURN)
 			{
-				game->playLoad(codeN);
-
+				try{
+					ifstream f("..\\saves\\" + codeN + ".pac");
+					if (f.good()){
+						game->playLoad(codeN);
+					}
+					else
+					{
+						throw FileNotFoundError(codeN);
+					}
+				}
+				catch (FileNotFoundError& e)
+				{
+					cout << e.what() << endl;
+					codeN = " ";
+				}
 			}
-			option1->loadFromText(game->renderer, codeN, menuFont, yellow);
+			try{
+				option1->loadFromText(game->renderer, codeN, menuFont, yellow);
+			}
+			catch (SDLError& e)
+			{
+				cout << e.what() << endl;
+			}
 		}
 	}
 }

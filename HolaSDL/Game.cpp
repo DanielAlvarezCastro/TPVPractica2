@@ -27,16 +27,6 @@ Game::Game()
 }
 Game::~Game()
 {
-	//Borra el SpriteSheet
-	//delete pacmanText;
-	
-	///resetGame();
-	/*delete userinterface;
-	delete screenFont;
-	delete scoreText;*/
-	/*delete savePanel;
-	delete saveText;
-	delete saveCode;*/
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();

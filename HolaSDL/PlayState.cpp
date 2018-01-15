@@ -11,7 +11,13 @@ PlayState::PlayState(Game* g) : GameState(g)
 	//Inicializa Textura del SpriteSheet
 	pacmanText = new Texture();
 	//Lo carga
-	pacmanText->load(game->renderer, "..\\images\\characters1.png", 4, 14);
+	try{
+		pacmanText->load(game->renderer, "..\\images\\characters1.png", 4, 14);
+	}
+	catch(SDLError& e) 
+	{
+		cout << e.what() << endl;
+	}
 	screenFont = new Font("..\\fonts\\Kiloton v1.0.ttf", 50);
 	//Inicializa Texturas de Interfaz
 	scoreText = new Texture();
@@ -38,7 +44,14 @@ PlayState::PlayState(Game* g, string filename) : GameState(g)
 	//Inicializa Textura del SpriteSheet
 	pacmanText = new Texture();
 	//Lo carga
-	pacmanText->load(game->renderer, "..\\images\\characters1.png", 4, 14);
+	try{
+		pacmanText->load(game->renderer, "..\\images\\characters1.png", 4, 14);
+	}
+	catch (SDLError& e)
+	{
+		cout << e.what() << endl;
+	}
+
 	screenFont = new Font("..\\fonts\\Kiloton v1.0.ttf", 50);
 	//Inicializa Texturas de Interfaz
 	scoreText = new Texture();
@@ -78,22 +91,22 @@ void PlayState::resetGame()
 
 MapCell PlayState::getCell(int x, int y)//Devuelve el valor que hay en una celda
 {
-	return static_cast<GameMap*>(gameObjects[0])->cells[y][x];//La representación en la celda es al contrario
+	return dynamic_cast<GameMap*>(gameObjects[0])->cells[y][x];//La representación en la celda es al contrario
 }
 
 void PlayState::changeCell(int x, int y, MapCell cell)//Cambia el valor de una celda, se usa en el pacman al comer una vitamina o comida y cambiarla por empty
 {
-	static_cast<GameMap*>(gameObjects[0])->cells[y][x] = cell;
+	dynamic_cast<GameMap*>(gameObjects[0])->cells[y][x] = cell;
 }
 void PlayState::substractFood()//Resta 1 al contador de comida
 {
 	addScore(10);
-	static_cast<GameMap*>(gameObjects[0])->foods--;
+	dynamic_cast<GameMap*>(gameObjects[0])->foods--;
 }
 void PlayState::substractVitamin()//Resta 1 al contador de vitamina
 {
 	addScore(50);
-	static_cast<GameMap*>(gameObjects[0])->vitamins--;
+	dynamic_cast<GameMap*>(gameObjects[0])->vitamins--;
 }
 
 void PlayState::nextLevel(){//Controla el nivel que se va a cargar
@@ -105,11 +118,11 @@ void PlayState::nextLevel(){//Controla el nivel que se va a cargar
 }
 int PlayState::getRows()//Pide las filas
 {
-	return static_cast<GameMap*>(gameObjects[0])->getRows();
+	return dynamic_cast<GameMap*>(gameObjects[0])->getRows();
 }
 int PlayState::getCols()//Pide las columnas
 {
-	return static_cast<GameMap*>(gameObjects[0])->getCols();
+	return dynamic_cast<GameMap*>(gameObjects[0])->getCols();
 }
 void PlayState::loadSave(string filename)//Carga una partida guardada
 {
@@ -133,30 +146,41 @@ void PlayState::createMap(ifstream& archivo)//Lee de un archivo y crea la matriz
 {
 	int dato;
 	GameMap* gm = new GameMap(game, this);
-	gm->loadFromFile(archivo);
-	int size;
-	archivo >> size;
-	size = size;
-	gameObjects.push_back(gm);
-	for (int i = 1; i <= size; i++)
-	{
-		archivo >> dato;
-		if (dato == 1)
+	try{
+		gm->loadFromFile(archivo);
+		int size;
+		archivo >> size;
+		size = size;
+		gameObjects.push_back(gm);
+		for (int i = 1; i <= size; i++)
 		{
-			SmartGhost* sg = new SmartGhost(game, this);
-			gameObjects.push_back(sg);
-			dynamic_cast<PacManObject*>(gameObjects[i])->loadFromFile(archivo);
+			archivo >> dato;
+			if (dato == 1)
+			{
+				SmartGhost* sg = new SmartGhost(game, this);
+				gameObjects.push_back(sg);
+				dynamic_cast<PacManObject*>(gameObjects[i])->loadFromFile(archivo);
+			}
+			else if (dato == 0)
+			{
+				Ghost* g = new Ghost(game, this, (i % 4) * 2);
+				gameObjects.push_back(g);
+				dynamic_cast<PacManObject*>(gameObjects[i])->loadFromFile(archivo);
+			}
+			else
+			{
+				throw FileFormatError("Tipo de fantasma desconocido");
+			}
 		}
-		else
-		{
-			Ghost* g = new Ghost(game,this, (i % 4) * 2);
-			gameObjects.push_back(g);
-			dynamic_cast<PacManObject*>(gameObjects[i])->loadFromFile(archivo);
-		}
+		p = new Pacman(game, this);
+		gameObjects.push_back(p);
+		dynamic_cast<PacManObject*>(gameObjects[gameObjects.size() - 1])->loadFromFile(archivo);
 	}
-	p = new Pacman(game, this);
-	gameObjects.push_back(p);
-	dynamic_cast<PacManObject*>(gameObjects[gameObjects.size() - 1])->loadFromFile(archivo);
+	catch (FileFormatError& e)
+	{
+		cout << e.what() << endl;
+		abort();
+	}
 	archivo.close();
 	update();
 	render();
@@ -182,8 +206,13 @@ void PlayState::addScore(int cuantity)//Añade puntuación y refresca el marcador
 {
 	score += cuantity;
 	string scoreSTR = "Score:" + to_string(score) + " ";
-
-	scoreText->loadFromText(game->renderer, scoreSTR, screenFont, white);
+	try{
+		scoreText->loadFromText(game->renderer, scoreSTR, screenFont, white);
+	}
+	catch (SDLError& e)
+	{
+		cout << e.what() << endl;
+	}
 }
 void PlayState::update(){//Controla los updates de las entidades y comprueba si ha habido una colisión
 	for (int i = gameObjects.size() - 1; i >= 0; i--)
@@ -218,23 +247,23 @@ bool PlayState::nextCell(int x, int y, int dirX, int dirY, int& nx, int& ny)//Si
 {
 	nx = x + dirX;//Calcula la posición siguiente
 	ny = y + dirY;
-	if (nx >= static_cast<GameMap*>(gameObjects[0])->getCols())//Estas condiciones hacen que el mapa tenga forma toroide
+	if (nx >= dynamic_cast<GameMap*>(gameObjects[0])->getCols())//Estas condiciones hacen que el mapa tenga forma toroide
 	{
 		nx = 0;
 	}
 	else if (nx < 0)
 	{
-		nx = static_cast<GameMap*>(gameObjects[0])->getCols() - 1;
+		nx = dynamic_cast<GameMap*>(gameObjects[0])->getCols() - 1;
 	}
 	if (ny < 0)
 	{
-		ny = static_cast<GameMap*>(gameObjects[0])->getRows() - 1;
+		ny = dynamic_cast<GameMap*>(gameObjects[0])->getRows() - 1;
 	}
-	else if (ny >= static_cast<GameMap*>(gameObjects[0])->getRows())
+	else if (ny >= dynamic_cast<GameMap*>(gameObjects[0])->getRows())
 	{
 		ny = 0;
 	}
-	if (static_cast<GameMap*>(gameObjects[0])->cells[ny][nx] != Wall)
+	if (dynamic_cast<GameMap*>(gameObjects[0])->cells[ny][nx] != Wall)
 	{
 		return true;
 	}
@@ -242,14 +271,14 @@ bool PlayState::nextCell(int x, int y, int dirX, int dirY, int& nx, int& ny)//Si
 }
 int PlayState::getPacmanLives()//Devuelve las vidas del Pacman
 {
-	return static_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->getLives();
+	return dynamic_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->getLives();
 }
 void PlayState::vulnerabilityOff()
 {
 
 	for (int i = 1; i < gameObjects.size() - 1; i++)
 	{
-		static_cast<Ghost*>(gameObjects[i])->vulnerabilityOn();
+		dynamic_cast<Ghost*>(gameObjects[i])->vulnerabilityOn();
 	}
 }
 
@@ -281,28 +310,28 @@ void PlayState::handleBirths()//Comprueba si se han cruzado dos SmartGhost fétil
 		{
 			for (int j = i + 1; j < ghost.size(); j++)
 			{
-				if (static_cast<Ghost*>(gameObjects[ghost[i]])->getPosX() == static_cast<Ghost*>(gameObjects[ghost[j]])->getPosX() &&
-					static_cast<Ghost*>(gameObjects[ghost[i]])->getPosY() == static_cast<Ghost*>(gameObjects[ghost[j]])->getPosY())
+				if (dynamic_cast<Ghost*>(gameObjects[ghost[i]])->getPosX() == dynamic_cast<Ghost*>(gameObjects[ghost[j]])->getPosX() &&
+					dynamic_cast<Ghost*>(gameObjects[ghost[i]])->getPosY() == dynamic_cast<Ghost*>(gameObjects[ghost[j]])->getPosY())
 				{
-					x = static_cast<Ghost*>(gameObjects[ghost[i]])->getPosX();
-					y = static_cast<Ghost*>(gameObjects[ghost[i]])->getPosY();
-					if (static_cast<GameMap*>(gameObjects[0])->cells[y + 1][x] != Wall)
+					x = dynamic_cast<Ghost*>(gameObjects[ghost[i]])->getPosX();
+					y = dynamic_cast<Ghost*>(gameObjects[ghost[i]])->getPosY();
+					if (dynamic_cast<GameMap*>(gameObjects[0])->cells[y + 1][x] != Wall)
 					{
 						y = y + 1;
 						posFind = true;
 
 					}
-					else if (static_cast<GameMap*>(gameObjects[0])->cells[y - 1][x] != Wall)
+					else if (dynamic_cast<GameMap*>(gameObjects[0])->cells[y - 1][x] != Wall)
 					{
 						y = y - 1;
 						posFind = true;
 					}
-					else if (static_cast<GameMap*>(gameObjects[0])->cells[y][x + 1] != Wall)
+					else if (dynamic_cast<GameMap*>(gameObjects[0])->cells[y][x + 1] != Wall)
 					{
 						x = x + 1;
 						posFind = true;
 					}
-					else if (static_cast<GameMap*>(gameObjects[0])->cells[y][x - 1] != Wall)
+					else if (dynamic_cast<GameMap*>(gameObjects[0])->cells[y][x - 1] != Wall)
 					{
 						x = x - 1;
 						posFind = true;
@@ -311,8 +340,8 @@ void PlayState::handleBirths()//Comprueba si se han cruzado dos SmartGhost fétil
 						SmartGhost* sg = new SmartGhost(game,this, x, y);
 						gameObjects.push_back(gameObjects[gameObjects.size() - 1]);
 						gameObjects[gameObjects.size() - 2] = sg;
-						static_cast<SmartGhost*>(gameObjects[ghost[i]])->fertilOff();
-						static_cast<SmartGhost*>(gameObjects[ghost[j]])->fertilOff();
+						dynamic_cast<SmartGhost*>(gameObjects[ghost[i]])->fertilOff();
+						dynamic_cast<SmartGhost*>(gameObjects[ghost[j]])->fertilOff();
 
 					}
 				}
@@ -326,8 +355,8 @@ int PlayState::pacmanColl()//Comprueba si algun fantasma ha colisionado con el P
 	int i = 1;
 	while (i < gameObjects.size() - 1)
 	{
-		if (static_cast<Ghost*>(gameObjects[i])->getPosX() == static_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->getPosX() &&
-			static_cast<Ghost*>(gameObjects[i])->getPosY() == static_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->getPosY())
+		if (dynamic_cast<Ghost*>(gameObjects[i])->getPosX() == dynamic_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->getPosX() &&
+			dynamic_cast<Ghost*>(gameObjects[i])->getPosY() == dynamic_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->getPosY())
 		{
 			return i;
 		}
@@ -341,22 +370,22 @@ void PlayState::handleCollision(){//Gestiona las colisiones entre Pacman y los f
 	if (coll != 0)
 	{
 
-		if (!static_cast<Ghost*>(gameObjects[coll])->getVulnerability())//Si el fantasma en cuestión es invulnerable, Pacman pierde una vida
+		if (!dynamic_cast<Ghost*>(gameObjects[coll])->getVulnerability())//Si el fantasma en cuestión es invulnerable, Pacman pierde una vida
 		{
-			static_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->die();
+			dynamic_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->die();
 			render();
 			SDL_Delay(500);
 			resetPositions();
 		}
 		else
 		{
-			if (static_cast<SmartGhost*>(gameObjects[coll])->dead()){
+			if (dynamic_cast<SmartGhost*>(gameObjects[coll])->dead()){
 				gameObjects.erase(gameObjects.begin() + coll);
 
 			}
 			else {
-				static_cast<GameCharacter*>(gameObjects[coll])->backToIni();
-				static_cast<Ghost*>(gameObjects[coll])->vulnerabilityOff();
+				dynamic_cast<GameCharacter*>(gameObjects[coll])->backToIni();
+				dynamic_cast<Ghost*>(gameObjects[coll])->vulnerabilityOff();
 			}
 			addScore(100);
 		}
@@ -366,12 +395,12 @@ void PlayState::handleCollision(){//Gestiona las colisiones entre Pacman y los f
 void PlayState::resetPositions(){//Reinicia las posiciones de los fantasmas y el pacman
 	for (int i = 1; i < gameObjects.size(); i++)
 	{
-		static_cast<GameCharacter*>(gameObjects[i])->backToIni();
+		dynamic_cast<GameCharacter*>(gameObjects[i])->backToIni();
 	}
 }
 
 void PlayState::checkEndGame(){//Comprueba que no quedan comidas ni vitaminas en el mapa
-	if (static_cast<GameMap*>(gameObjects[0])->getFoods() + static_cast<GameMap*>(gameObjects[0])->getVitamins() == 0){
+	if (dynamic_cast<GameMap*>(gameObjects[0])->getFoods() + dynamic_cast<GameMap*>(gameObjects[0])->getVitamins() == 0){
 		gameWon();
 	}
 }
@@ -397,18 +426,18 @@ void PlayState::handleEvent(SDL_Event& e)
 {
 	if (e.type == SDL_KEYDOWN){
 		if (e.key.keysym.sym == SDLK_DOWN){
-			static_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->changeDir('d');
+			dynamic_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->changeDir('d');
 		}
 		else if (e.key.keysym.sym == SDLK_UP){
-			static_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->changeDir('u');
+			dynamic_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->changeDir('u');
 		}
 		else if (e.key.keysym.sym == SDLK_RIGHT){
-			static_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->changeDir('r');
+			dynamic_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->changeDir('r');
 		}
 		else if (e.key.keysym.sym == SDLK_LEFT){
-			static_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->changeDir('l');
+			dynamic_cast<Pacman*>(gameObjects[gameObjects.size() - 1])->changeDir('l');
 		}
-		else if (e.key.keysym.sym == SDLK_s)
+		else if (e.key.keysym.sym == SDLK_ESCAPE)
 		{
 			game->pause();
 		}

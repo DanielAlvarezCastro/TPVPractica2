@@ -1,6 +1,5 @@
 #include "Texture.h"
 
-
 Texture::Texture()
 {
 }
@@ -18,7 +17,15 @@ void Texture::free()
 bool Texture::load(SDL_Renderer* renderer, string filename, uint numRows, uint numCols){//Carga la textura a parti de un archivo
 
 	SDL_Surface* surface = IMG_Load(filename.c_str());
+	if (surface == nullptr){
+		string t = IMG_GetError();
+		throw SDLError("Error de cargado de textura-> ", t);
+	}
 	texture = SDL_CreateTextureFromSurface(renderer, surface);
+	if (texture == nullptr)	{
+		string t = SDL_GetError();
+		throw SDLError("Error de cargado de textura-> ", t);
+	}
 	SDL_RenderCopy(renderer, texture, nullptr, nullptr);
 	h = surface->h;
 	w = surface->w;
@@ -39,17 +46,22 @@ void Texture::renderFrame(SDL_Renderer* renderer, SDL_Rect& srcRect, const SDL_R
 }
 bool Texture::loadFromText(SDL_Renderer*renderer, string text,const	Font* font,SDL_Color color)	{
 	SDL_Surface* textSurface = font->generateSurface(text, color);
-	if (textSurface == nullptr)
-		cout << "Unable	to	render	text	surface!	SDL_ttf	Error:	"
-		<< TTF_GetError() << "\n";
+	if (textSurface == nullptr){
+		string t = TTF_GetError();
+		throw SDLError("Error de cargado de fuente-> ", t);
+		/*cout << "Unable	to	render	text	surface!	SDL_ttf	Error:	"
+		<< TTF_GetError() << "\n";*/
+	}
 	else	
 	{
 		free();
 		texture = SDL_CreateTextureFromSurface(renderer, textSurface);
 		if (texture == nullptr)	{
-			cout << "Unable	to	create	texture	from	text!	SDL	Error:	"
+			string t = SDL_GetError();
+			throw SDLError("Error de cargado de fuente-> ", t);
+			/*cout << "Unable	to	create	texture	from	text!	SDL	Error:	"
 				<< SDL_GetError() << "\n";
-			w = h = 0;
+			w = h = 0;*/
 		}
 		else	{
 			w = textSurface->w;

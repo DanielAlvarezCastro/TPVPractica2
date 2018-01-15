@@ -6,6 +6,7 @@
 #include "SDL_ttf.h"
 #include "Font.h"
 #include <iostream>
+#include "SDLError.h"
 
 typedef unsigned int uint;
 

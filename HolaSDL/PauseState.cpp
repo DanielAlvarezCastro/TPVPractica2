@@ -89,7 +89,7 @@ void PauseState::handleEvent(SDL_Event& e)
 		{
 			game->saveResume(codeN);
 		}
-		else if (e.key.keysym.sym == SDLK_s)
+		else if (e.key.keysym.sym == SDLK_ESCAPE)
 		{
 			game->resume();
 		}

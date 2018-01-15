@@ -13,11 +13,13 @@ private:
 	Texture* title;
 	Texture* option1;
 	Texture* option2;
+	Texture* quit;
 
 	SDL_Rect bgPos;
 	SDL_Rect titlePos;
 	SDL_Rect optionPos;
 	SDL_Rect optionPos2;
+	SDL_Rect quitB;
 
 	Font* menuFont;
 	SDL_Color yellow;

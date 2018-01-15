@@ -38,10 +38,26 @@ void GameCharacter::loadFromFile(ifstream& archivo)//Método de cargado en archiv
 {
 	archivo >> x;
 	archivo >> y;
+	if (x < 0 || y < 0)
+	{
+		throw FileFormatError("Posicion de GameCharacter invalida");
+	}
 	archivo >> xIni;
 	archivo >> yIni;
+	if (xIni < 0 || yIni < 0)
+	{
+		throw FileFormatError("Posicion inicial de GameCharacter invalida");
+	}
 	archivo >> dirX;
 	archivo >> dirY;
+	if (dirX < -1 || dirX>1 || dirY < -1 || dirY>1)
+	{
+		throw FileFormatError("Direciones de GameCharacter invalidas");
+	}
+	else if ((dirX == 1 && dirY == 1) || (dirX == -1 && dirY == -1))
+	{
+		throw FileFormatError("Direcion diagonal de GameCharacter invalidas");
+	}
 	destRect.x = xIni*w;
 	destRect.y = yIni*h;
 
