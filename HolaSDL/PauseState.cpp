@@ -7,6 +7,7 @@ PauseState::PauseState(Game* g):GameState(g)
 	saveCode = new Texture();
 	saveText = new Texture();
 	savePanel = new Texture();
+	screenFont = new Font("..\\fonts\\Kiloton v1.0.ttf", 50);
 	savePanel->load(game->renderer, "..\\images\\bluePanel.png", 1, 1);
 	saveText->loadFromText(game->renderer, "Create save code", screenFont, white);
 
@@ -38,6 +39,7 @@ PauseState::~PauseState()
 	delete savePanel;
 	delete saveText;
 	delete saveCode;
+	delete screenFont;
 }
 void PauseState::handleEvent(SDL_Event& e)
 {
@@ -85,8 +87,13 @@ void PauseState::handleEvent(SDL_Event& e)
 		}
 		else if (e.key.keysym.sym == SDLK_RETURN)
 		{
-
+			game->saveResume(codeN);
 		}
+		else if (e.key.keysym.sym == SDLK_s)
+		{
+			game->resume();
+		}
+
 
 	}
 }

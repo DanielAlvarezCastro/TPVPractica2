@@ -2,9 +2,10 @@
 #include "SDL.h"
 #include "SDL_image.h"
 #include "GameObject.h"
+#include "PacManObject.h"
 #include "Texture.h"
 using namespace std;
-class GameCharacter: public GameObject
+class GameCharacter: public PacManObject
 {
 private:
 	Texture* texture;
@@ -16,8 +17,8 @@ protected:
 	uint IniFrow, IniFcol; //Columnas iniciales donde están los frames
 	SDL_Rect destRect, srcRect;
 public:
-	GameCharacter(Game* g);
-	GameCharacter(Game *g, uint xI, uint yI);
+	GameCharacter(Game* g, PlayState* pS);
+	GameCharacter(Game *g, PlayState* pS, uint xI, uint yI);
 	virtual ~GameCharacter();
 	virtual void update()=0;//Abstracto
 	virtual void render();

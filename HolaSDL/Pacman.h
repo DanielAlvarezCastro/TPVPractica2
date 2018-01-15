@@ -10,8 +10,8 @@ class Pacman: public GameCharacter
 private:
 	int lives;
 public:
-	Pacman(Game *dir, uint xI, uint yI,uint Fcol);
-	Pacman(Game* dir);
+	Pacman(Game *dir, PlayState* pS, uint xI, uint yI, uint Fcol);
+	Pacman(Game* dir, PlayState* pS);
 	~Pacman();
 	virtual void saveToFile(ofstream& archivo);
 	virtual void loadFromFile(ifstream& archivo);

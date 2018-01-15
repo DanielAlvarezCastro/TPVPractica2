@@ -3,25 +3,25 @@
 
 
 
-GameCharacter::GameCharacter(Game *g, uint xI, uint yI):GameObject(g)
+GameCharacter::GameCharacter(Game *g, PlayState* pS, uint xI, uint yI) :PacManObject(g, pS)
 {
-	texture = game->pacmanText;
+	texture = pState->pacmanText;
 	Frow = IniFrow = 0;
 	x = xIni = xI;
 	y = yIni = yI;
-	destRect.w = w = game->getWinW() / game->getCols();//Calcula el tamaño del Pacman teniendo en relación la anchura de la ventana y las columnas
-	destRect.h = h = game->getWinH() / game->getRows();
+	destRect.w = w = game->getWinW() / pState->getCols();//Calcula el tamaño del Pacman teniendo en relación la anchura de la ventana y las columnas
+	destRect.h = h = game->getWinH() / pState->getRows();
 	destRect.x = xIni*w;
 	destRect.y = yIni*h;
 	dirY = 1;
 
 }
-GameCharacter::GameCharacter(Game *g) :GameObject(g)
+GameCharacter::GameCharacter(Game *g, PlayState* pS) :PacManObject(g, pS)
 {
-	texture = game->pacmanText;
+	texture = pState->pacmanText;
 	Frow = IniFrow = 0;
-	destRect.w = w = game->getWinW() / game->getCols();//Calcula el tamaño del Pacman teniendo en relación la anchura de la ventana y las columnas
-	destRect.h = h = game->getWinH() / game->getRows();
+	destRect.w = w = game->getWinW() / pState->getCols();//Calcula el tamaño del Pacman teniendo en relación la anchura de la ventana y las columnas
+	destRect.h = h = game->getWinH() / pState->getRows();
 	dirY = 1;
 
 }

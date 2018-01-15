@@ -19,6 +19,7 @@
 #include "PauseState.h"
 #include "EndState.h"
 #include "PlayState.h"
+#include <stdexcept>
 
 using namespace std;
 class Game
@@ -27,38 +28,10 @@ private:
 	SDL_Window* window;
 	bool error = false;//Flag para errores
 	bool exit = false;
-	bool exitMenu = false;
-	bool exitlevel = false;
-	bool gameover = false;
-
 	SDL_Event event;
-
-	MainMenu* menu;
-
-	int score;
-	SDL_Color white;
-	Font* screenFont;
-	Texture* scoreText;
-	SDL_Rect scorePos;
-
-	bool saving = false;
-	string codeN;
-	Texture* savePanel;
-	Texture* saveText;
-	Texture* saveCode;
-	SDL_Rect spanelPos;
-	SDL_Rect stextPos;
-	SDL_Rect scodePos;
-
 	int winX, winY;
 	const int winWidth = 800;
 	const int winHeight = 600;
-
-
-	uint level;
-	UserInterface* userinterface;
-
-
 	GameStateMachine* stateMachine;
 
 public:
@@ -67,46 +40,21 @@ public:
 	vector<GameObject*> gameObjects;
 	Pacman* p;
 
-	Texture* pacmanText;
-
 	SDL_Renderer* renderer;
 	Game();
 	~Game();
 	int getWinW();
 	int getWinH();
-	int getRows();
-	int getCols();
-	MapCell getCell(int x, int y);
-
-
-	void changeCell(int x, int y, MapCell cell);
-	void addScore(int cuantity);
-	void substractFood();
-	void substractVitamin();
-
-	void createMap(ifstream& filename);
-	void loadLevel(string filename);
-	void loadSave(string filename);
-	void menuEvents();
-	void nextLevel();
 	void handleEvents();
-	void update();
 	void render();
 	void run();
-	void resetGame();
 
-
-	bool nextCell(int x, int y, int dirX, int dirY, int& nx, int& ny);
-	int pacmanColl();
-	void handleCollision();
-	vector<int>sghostCounter();
-	void handleBirths();
-	void resetPositions();
-	void vulnerabilityOff();
-	int getPacmanLives();
-
-	void checkEndGame();
-	void gameOver();
-	void gameWon();
+	void playState();
+	void playLoad(string filename);
+	void pause();
+	void resume();
+	void saveResume(string filename);
+	void endScreen(bool win);
+	void quitEndScreen();
 };
 

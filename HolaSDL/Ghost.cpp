@@ -3,14 +3,14 @@
 
 
 
-Ghost::Ghost(Game *dir, uint xI, uint yI):GameCharacter(dir, xI, yI)
+Ghost::Ghost(Game *dir, PlayState* pS, uint xI, uint yI) :GameCharacter(dir,pS, xI, yI)
 {
 	vulnerable = false;
 	srand(time(NULL));
 	bFrow = 0;
 	bFcol = 12;
 }
-Ghost::Ghost(Game *dir, int iCol) :GameCharacter(dir)
+Ghost::Ghost(Game *dir, PlayState* pS, int iCol) :GameCharacter(dir, pS)
 {
 	vulnerable = false;
 	srand(time(NULL));
@@ -65,7 +65,7 @@ void Ghost::searchDir()//REllena un vector con las direcciones posibles para el 
 	int ny = 0;
 	par aux;
 	aux.x = aux.y = 0;
-	if (game->nextCell(x, y, 1, 0, nx, ny))//Comprueba derecha
+	if (pState->nextCell(x, y, 1, 0, nx, ny))//Comprueba derecha
 	{
 		if (!(dirX == -1 && dirY == 0)){//Solo añade la dirección si no es la contraria
 			aux.x = 1;
@@ -74,7 +74,7 @@ void Ghost::searchDir()//REllena un vector con las direcciones posibles para el 
 		}
 	}
 	nx = ny = 0;
-	if (game->nextCell(x, y, -1, 0, nx, ny))//Izquierda
+	if (pState->nextCell(x, y, -1, 0, nx, ny))//Izquierda
 	{
 		if (!(dirX == 1 && dirY == 0)){//Solo añade la dirección si no es la contraria
 			aux.x = -1;
@@ -83,7 +83,7 @@ void Ghost::searchDir()//REllena un vector con las direcciones posibles para el 
 		}
 	}
 	nx = ny = 0;
-	if (game->nextCell(x, y, 0, 1, nx, ny))//Abajo
+	if (pState->nextCell(x, y, 0, 1, nx, ny))//Abajo
 	{
 		if (!(dirX == 0 && dirY == -1)){//Solo añade la dirección si no es la contraria
 			aux.x = 0;
@@ -92,7 +92,7 @@ void Ghost::searchDir()//REllena un vector con las direcciones posibles para el 
 		}
 	}
 	nx = ny = 0;
-	if (game->nextCell(x, y, 0, -1, nx, ny))//Arriba
+	if (pState->nextCell(x, y, 0, -1, nx, ny))//Arriba
 	{
 		if (!(dirX == 0 && dirY == 1)){//Solo añade la dirección si no es la contraria
 			aux.x = 0;
@@ -116,19 +116,19 @@ void Ghost::move()//Escoge una dirección aleatoria del vector y la aplica
 	}
 	x += dirX;
 	y += dirY;
-	if (x >= game->getCols())//Estas condiciones hacen que el mapa tenga forma toroide
+	if (x >= pState->getCols())//Estas condiciones hacen que el mapa tenga forma toroide
 	{
 		x = 0;
 	}
 	else if (x < 0)
 	{
-		x = game->getCols() - 1;
+		x = pState->getCols() - 1;
 	}
 	if (y < 0)
 	{
-		y = game->getRows() - 1;
+		y = pState->getRows() - 1;
 	}
-	else if (y >= game->getRows())
+	else if (y >= pState->getRows())
 	{
 		y = 0;
 	}

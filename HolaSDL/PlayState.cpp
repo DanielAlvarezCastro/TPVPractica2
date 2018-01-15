@@ -6,7 +6,7 @@ PlayState::PlayState(Game* g) : GameState(g)
 {
 	level = 1;
 	score = 0;
-	userinterface = new UserInterface(g);
+	userinterface = new UserInterface(game, this);
 
 	//Inicializa Textura del SpriteSheet
 	pacmanText = new Texture();
@@ -25,13 +25,42 @@ PlayState::PlayState(Game* g) : GameState(g)
 	scorePos.w = 100;
 	scorePos.x = 350;
 	scorePos.y = 579;
+
+	nextLevel();
 }
+
+PlayState::PlayState(Game* g, string filename) : GameState(g)
+{
+	level = 1;
+	score = 0;
+	userinterface = new UserInterface(game, this);
+
+	//Inicializa Textura del SpriteSheet
+	pacmanText = new Texture();
+	//Lo carga
+	pacmanText->load(game->renderer, "..\\images\\characters1.png", 4, 14);
+	screenFont = new Font("..\\fonts\\Kiloton v1.0.ttf", 50);
+	//Inicializa Texturas de Interfaz
+	scoreText = new Texture();
+
+	white.a = 255;
+	white.g = 255;
+	white.b = 255;
+	white.r = 255;
+
+	scorePos.h = 27;
+	scorePos.w = 100;
+	scorePos.x = 350;
+	scorePos.y = 579;
+
+	loadSave(filename);
+}
+
 
 
 PlayState::~PlayState()
 {
 	delete pacmanText;
-
 	resetGame();
 	delete userinterface;
 	delete screenFont;
@@ -69,10 +98,18 @@ void PlayState::substractVitamin()//Resta 1 al contador de vitamina
 
 void PlayState::nextLevel(){//Controla el nivel que se va a cargar
 
-		loadLevel("level0" + level);
+		loadLevel("level0" + to_string(level));
 		userinterface->setLifeSize();
 	
 
+}
+int PlayState::getRows()//Pide las filas
+{
+	return static_cast<GameMap*>(gameObjects[0])->getRows();
+}
+int PlayState::getCols()//Pide las columnas
+{
+	return static_cast<GameMap*>(gameObjects[0])->getCols();
 }
 void PlayState::loadSave(string filename)//Carga una partida guardada
 {
@@ -95,7 +132,7 @@ void PlayState::loadLevel(string filename)//Carga un nivel nuevo
 void PlayState::createMap(ifstream& archivo)//Lee de un archivo y crea la matriz del mapa
 {
 	int dato;
-	GameMap* gm = new GameMap(game);
+	GameMap* gm = new GameMap(game, this);
 	gm->loadFromFile(archivo);
 	int size;
 	archivo >> size;
@@ -106,22 +143,40 @@ void PlayState::createMap(ifstream& archivo)//Lee de un archivo y crea la matriz
 		archivo >> dato;
 		if (dato == 1)
 		{
-			SmartGhost* sg = new SmartGhost(game);
+			SmartGhost* sg = new SmartGhost(game, this);
 			gameObjects.push_back(sg);
-			gameObjects[i]->loadFromFile(archivo);
+			dynamic_cast<PacManObject*>(gameObjects[i])->loadFromFile(archivo);
 		}
 		else
 		{
-			Ghost* g = new Ghost(game, (i % 4) * 2);
+			Ghost* g = new Ghost(game,this, (i % 4) * 2);
 			gameObjects.push_back(g);
-			gameObjects[i]->loadFromFile(archivo);
+			dynamic_cast<PacManObject*>(gameObjects[i])->loadFromFile(archivo);
 		}
 	}
-	Pacman* p = new Pacman(game);
+	p = new Pacman(game, this);
 	gameObjects.push_back(p);
-	gameObjects[gameObjects.size() - 1]->loadFromFile(archivo);
+	dynamic_cast<PacManObject*>(gameObjects[gameObjects.size() - 1])->loadFromFile(archivo);
 	archivo.close();
+	update();
+	render();
+	SDL_Delay(1000);
 
+}
+
+void PlayState::saveGame(string filename)
+{
+	ofstream archivo("..\\saves\\" + filename + ".pac");
+	archivo << level << " " << score << endl;
+	dynamic_cast<PacManObject*>(gameObjects[0])->saveToFile(archivo);
+	archivo << endl;
+	archivo << gameObjects.size() - 2;
+	archivo << endl;
+	for (int i = 1; i < gameObjects.size(); i++)
+	{
+		dynamic_cast<PacManObject*>(gameObjects[i])->saveToFile(archivo);
+		archivo << endl;
+	}
 }
 void PlayState::addScore(int cuantity)//Añade puntuación y refresca el marcador
 {
@@ -253,7 +308,7 @@ void PlayState::handleBirths()//Comprueba si se han cruzado dos SmartGhost fétil
 						posFind = true;
 					}
 					if (posFind){
-						SmartGhost* sg = new SmartGhost(game, x, y);
+						SmartGhost* sg = new SmartGhost(game,this, x, y);
 						gameObjects.push_back(gameObjects[gameObjects.size() - 1]);
 						gameObjects[gameObjects.size() - 2] = sg;
 						static_cast<SmartGhost*>(gameObjects[ghost[i]])->fertilOff();
@@ -321,15 +376,20 @@ void PlayState::checkEndGame(){//Comprueba que no quedan comidas ni vitaminas en
 	}
 }
 void PlayState::gameOver(){//Termina el juego cuando has perdido
-
+	game->endScreen(false);
 }
 void PlayState::gameWon(){//Termina el juego cuando ganas
 	
 	level++;
 	if (level <= 5){
+		userinterface->nextLevelRender();
+		SDL_Delay(1500);
 		nextLevel();
 	}
-	else{}
+	else
+	{
+		game->endScreen(true);
+	}
 		
 }
 
@@ -350,6 +410,7 @@ void PlayState::handleEvent(SDL_Event& e)
 		}
 		else if (e.key.keysym.sym == SDLK_s)
 		{
+			game->pause();
 		}
 	}
 }

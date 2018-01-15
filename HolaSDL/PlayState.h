@@ -1,5 +1,6 @@
 #pragma once
 #include "GameState.h"
+#include "Pacman.h"
 
 class PlayState:public GameState
 {
@@ -15,10 +16,14 @@ private:
 	UserInterface* userinterface;
 public:
 	PlayState(Game* g);
+	PlayState(Game* g, string filename);
 	~PlayState();
 	Texture* pacmanText;
 	MapCell getCell(int x, int y);
 
+	Pacman* p;
+	int getRows();
+	int getCols();
 	void changeCell(int x, int y, MapCell cell);
 	void addScore(int cuantity);
 	void substractFood();
@@ -27,13 +32,14 @@ public:
 	void createMap(ifstream& filename);
 	void loadLevel(string filename);
 	void loadSave(string filename);
+	void saveGame(string filename);
 	void menuEvents();
 	void nextLevel();
 	void handleEvent(SDL_Event& e);
 	void update();
 	void render();
 	void resetGame();
-
+	
 	bool nextCell(int x, int y, int dirX, int dirY, int& nx, int& ny);
 	int pacmanColl();
 	void handleCollision();

@@ -2,7 +2,7 @@
 #include "Game.h"
 
 
-GameMap::GameMap(Game* dir, uint rows, uint cols) : GameObject(dir)
+GameMap::GameMap(Game* dir, PlayState* pS, uint rows, uint cols) : PacManObject(dir, pS)
 {
 	this->rows = rows;
 	this->cols = cols;
@@ -16,7 +16,7 @@ GameMap::GameMap(Game* dir, uint rows, uint cols) : GameObject(dir)
 	size.h = game->getWinH() / rows;
 	size.w = game->getWinW() / cols;
 }
-GameMap::GameMap(Game* dir) : GameObject(dir)
+GameMap::GameMap(Game* dir, PlayState* pS) : PacManObject(dir, pS)
 {
 	
 	mapTexts();

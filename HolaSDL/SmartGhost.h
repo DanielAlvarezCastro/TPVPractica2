@@ -16,8 +16,8 @@ public:
 	void dirToPacman();
 	virtual void searchDir();
 	virtual void move();
-	SmartGhost(Game* dir);
-	SmartGhost(Game *dir, uint xI, uint yI);
+	SmartGhost(Game* dir, PlayState* pS);
+	SmartGhost(Game *dir, PlayState* pS, uint xI, uint yI);
 	~SmartGhost();
 	bool dead();
 	bool getFertil();

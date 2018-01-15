@@ -25,7 +25,6 @@ private:
 
 	string codeN;
 	bool saving;
-	bool exit;
 public:
 
 	MainMenuState(Game* g);

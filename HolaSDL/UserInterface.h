@@ -6,6 +6,7 @@
 #include "checkML.h";
 #pragma once
 class Game;
+class PlayState;
 class UserInterface
 {
 private:
@@ -17,9 +18,10 @@ private:
 	SDL_Rect lifeSrcRect;
 	SDL_Rect lifeRect;
 	SDL_Rect windowRect;
+	PlayState* pState;
 	Game* game;
 public:
-	UserInterface(Game* dir);
+	UserInterface(Game* dir, PlayState* pS);
 	void menuRender();
 	void setLifeSize();
 	void renderLives();

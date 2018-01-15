@@ -1,11 +1,11 @@
 #include "Pacman.h"
 #include "Game.h"
 
-Pacman::Pacman(Game *dir, uint xI, uint yI, uint Fcol):GameCharacter(dir, xI, yI)//Dirección al juego
+Pacman::Pacman(Game *dir, PlayState* pS, uint xI, uint yI, uint Fcol) :GameCharacter(dir,pS, xI, yI)//Dirección al juego
 {
 	lives = 3;
 }
-Pacman::Pacman(Game *dir) : GameCharacter(dir)//Dirección al juego
+Pacman::Pacman(Game *dir, PlayState* pS) : GameCharacter(dir, pS)//Dirección al juego
 {
 	Fcol = IniFcol= 10;
 	lives = 3;
@@ -90,26 +90,26 @@ void Pacman::changeDir(char dir){//Según la letra introducida cambia la direcció
 void Pacman::move(){//Aplica la dirección siguiente si es posible
 	int nx = 0;
 	int ny = 0;
-	if (game->nextCell(x, y, ndirX, ndirY, nx, ny)){//Si la posición pulsada en ese momento es posible
+	if (pState->nextCell(x, y, ndirX, ndirY, nx, ny)){//Si la posición pulsada en ese momento es posible
 		dirX = ndirX; // entonces la dirección actual toma ese valor (Búffer)
 		dirY = ndirY;
 	}
 	handleAnimation();//Aplica la animación según la dirección
 	nx = ny = 0;
-	if (game->nextCell(x, y, dirX, dirY, nx, ny))//Si la posición siguiente devuelve true, entonces se puede mover
+	if (pState->nextCell(x, y, dirX, dirY, nx, ny))//Si la posición siguiente devuelve true, entonces se puede mover
 	{
 		x = nx;
 		y = ny;
-		if (game->getCell(nx, ny) == Vitamins)//Cuando choca con una vitamina los fantasmas regresan a su posición original
+		if (pState->getCell(nx, ny) == Vitamins)//Cuando choca con una vitamina los fantasmas regresan a su posición original
 		{
-			game->substractVitamin();
-			game->changeCell(nx, ny, Empty);//Cambia el valor de vitamina por vacío
-			game->vulnerabilityOff();
+			pState->substractVitamin();
+			pState->changeCell(nx, ny, Empty);//Cambia el valor de vitamina por vacío
+			pState->vulnerabilityOff();
 		}
-		else if (game->getCell(nx, ny) == Food)
+		else if (pState->getCell(nx, ny) == Food)
 		{
-			game->substractFood();
-			game->changeCell(nx, ny, Empty);
+			pState->substractFood();
+			pState->changeCell(nx, ny, Empty);
 		}
 	}
 }
@@ -123,7 +123,7 @@ void Pacman::update(){//Lleva el movimiento y el lugar donde se pinta
 void Pacman::die(){//Resta una vida a Pacman
 	lives--;
 	if (lives < 0){
-		game->gameOver();
+		pState->gameOver();
 	}
 }
 

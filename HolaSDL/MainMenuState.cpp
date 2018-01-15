@@ -4,7 +4,6 @@
 
 MainMenuState::MainMenuState(Game* g) : GameState(g)
 {
-	exit = false;
 	saving = false;
 	codeN = "";
 	backGround = new Texture();
@@ -37,6 +36,11 @@ MainMenuState::MainMenuState(Game* g) : GameState(g)
 
 MainMenuState::~MainMenuState()
 {
+	delete backGround;
+	delete title;
+	delete option1;
+	delete option2;
+	delete menuFont;
 }
 
 void MainMenuState::render()
@@ -58,7 +62,7 @@ void MainMenuState::handleEvent(SDL_Event& e)
 			SDL_GetMouseState(&mouse.x, &mouse.y);
 			if (SDL_PointInRect(&mouse, &optionPos))
 			{
-				exit = true;
+				game->playState();
 			}
 			else if (SDL_PointInRect(&mouse, &optionPos2))
 			{
@@ -75,48 +79,40 @@ void MainMenuState::handleEvent(SDL_Event& e)
 		{
 			if (e.key.keysym.sym == SDLK_0){
 				codeN += "0";
-				option1->loadFromText(game->renderer, codeN, menuFont, yellow);
 			}
 			else if (e.key.keysym.sym == SDLK_1){
 				codeN += "1";
-				option1->loadFromText(game->renderer, codeN, menuFont, yellow);
 			}
 			else if (e.key.keysym.sym == SDLK_2){
 				codeN += "2";
-				option1->loadFromText(game->renderer, codeN, menuFont, yellow);
 			}
 			else if (e.key.keysym.sym == SDLK_3){
 				codeN += "3";
-				option1->loadFromText(game->renderer, codeN, menuFont, yellow);
 			}
 			else if (e.key.keysym.sym == SDLK_4){
 				codeN += "4";
-				option1->loadFromText(game->renderer, codeN, menuFont, yellow);
 			}
 			else if (e.key.keysym.sym == SDLK_5){
 				codeN += "5";
-				option1->loadFromText(game->renderer, codeN, menuFont, yellow);
 			}
 			else if (e.key.keysym.sym == SDLK_6){
 				codeN += "6";
-				option1->loadFromText(game->renderer, codeN, menuFont, yellow);
 			}
 			else if (e.key.keysym.sym == SDLK_7){
 				codeN += "7";
-				option1->loadFromText(game->renderer, codeN, menuFont, yellow);
 			}
 			else if (e.key.keysym.sym == SDLK_8){
 				codeN += "8";
-				option1->loadFromText(game->renderer, codeN, menuFont, yellow);
 			}
 			else if (e.key.keysym.sym == SDLK_9){
 				codeN += "9";
-				option1->loadFromText(game->renderer, codeN, menuFont, yellow);
 			}
 			else if (e.key.keysym.sym == SDLK_RETURN)
 			{
-				exit = true;
+				game->playLoad(codeN);
+
 			}
+			option1->loadFromText(game->renderer, codeN, menuFont, yellow);
 		}
 	}
 }

@@ -2,7 +2,7 @@
 #include "Game.h"
 
 
-SmartGhost::SmartGhost(Game *dir, uint xI, uint yI):Ghost(dir, xI, yI)
+SmartGhost::SmartGhost(Game *dir, PlayState* pS, uint xI, uint yI) :Ghost(dir,pS, xI, yI)
 {
 
 	edad = 1;
@@ -13,7 +13,7 @@ SmartGhost::SmartGhost(Game *dir, uint xI, uint yI):Ghost(dir, xI, yI)
 	Fcol = IniFcol = 8;
 	muerto = false;
 }
-SmartGhost::SmartGhost(Game *dir) : Ghost(dir, 8)
+SmartGhost::SmartGhost(Game *dir, PlayState* pS) : Ghost(dir,pS, 8)
 {
 	edad = 1;
 	adulto = false;
@@ -59,25 +59,25 @@ void SmartGhost::dirToPacman(){//Si está en la misma línea que Pacman lo sigue h
 	int ny = 0;
 	par aux;
 	aux.x = aux.y = 0;	
-	if (game->p->getPosX() > x && game->nextCell(x, y, 1, 0, nx, ny) && game->p->getPosY() == y){//Solo añade la dirección si Pacman está a la derecha
+	if (pState->p->getPosX() > x && pState->nextCell(x, y, 1, 0, nx, ny) && pState->p->getPosY() == y){//Solo añade la dirección si Pacman está a la derecha
 		aux.x = 1;
 		aux.y = 0;
 		dir.push_back(aux);//Mete la dirección derecha al vector si es posible
 		nx = ny = 0;
 	}
-	else if (game->p->getPosX() <= x && game->nextCell(x, y, -1, 0, nx, ny) && game->p->getPosY() == y){//Solo añade la dirección si Pacman está a la izquierda
+	else if (pState->p->getPosX() <= x && pState->nextCell(x, y, -1, 0, nx, ny) && pState->p->getPosY() == y){//Solo añade la dirección si Pacman está a la izquierda
 		aux.x = -1;
 		aux.y = 0;
 		dir.push_back(aux);
 		nx = ny = 0;
 	}
-	else if (game->p->getPosY() > y && game->nextCell(x, y, 0, 1, nx, ny) && game->p->getPosX() == x){//Solo añade la dirección si Pacman está abajo
+	else if (pState->p->getPosY() > y && pState->nextCell(x, y, 0, 1, nx, ny) && pState->p->getPosX() == x){//Solo añade la dirección si Pacman está abajo
 		aux.x = 0;
 		aux.y = 1;
 		dir.push_back(aux);
 		nx = ny = 0;
 	}
-	else if (game->p->getPosY() <= y && game->nextCell(x, y, 0, -1, nx, ny) && game->p->getPosX() == x){//Solo añade la dirección si Pacman está arriba
+	else if (pState->p->getPosY() <= y && pState->nextCell(x, y, 0, -1, nx, ny) && pState->p->getPosX() == x){//Solo añade la dirección si Pacman está arriba
 		aux.x = 0;
 		aux.y = -1;
 		dir.push_back(aux);
@@ -94,7 +94,7 @@ void SmartGhost::searchDir(){
 	int ny = 0;
 	par aux;
 	aux.x = aux.y = 0;	
-	if (game->nextCell(x, y, 1, 0, nx, ny) && !(dirX == -1 && dirY == 0))//Comprueba derecha
+	if (pState->nextCell(x, y, 1, 0, nx, ny) && !(dirX == -1 && dirY == 0))//Comprueba derecha
 	{
 		aux.x = 1;
 		aux.y = 0;
@@ -102,7 +102,7 @@ void SmartGhost::searchDir(){
 		
 	}
 	nx = ny = 0;
-	if (game->nextCell(x, y, -1, 0, nx, ny) && !(dirX == 1 && dirY == 0))//Izquierda
+	if (pState->nextCell(x, y, -1, 0, nx, ny) && !(dirX == 1 && dirY == 0))//Izquierda
 	{
 		aux.x = -1;
 		aux.y = 0;
@@ -110,14 +110,14 @@ void SmartGhost::searchDir(){
 		
 	}
 	nx = ny = 0;
-	if (game->nextCell(x, y, 0, 1, nx, ny) && !(dirX == 0 && dirY == -1))//Abajo
+	if (pState->nextCell(x, y, 0, 1, nx, ny) && !(dirX == 0 && dirY == -1))//Abajo
 	{
 		aux.x = 0;
 		aux.y = 1;
 		dir.push_back(aux);		
 	}
 	nx = ny = 0;
-	if (game->nextCell(x, y, 0, -1, nx, ny) && !(dirX == 0 && dirY == 1))//Arriba
+	if (pState->nextCell(x, y, 0, -1, nx, ny) && !(dirX == 0 && dirY == 1))//Arriba
 	{
 		aux.x = 0;
 		aux.y = -1;
@@ -142,19 +142,19 @@ void SmartGhost::move()//Escoge una dirección aleatoria del vector y la aplica
 	}
 	x += dirX;
 	y += dirY;
-	if (x >= game->getCols())//Estas condiciones hacen que el mapa tenga forma toroide
+	if (x >= pState->getCols())//Estas condiciones hacen que el mapa tenga forma toroide
 	{
 		x = 0;
 	}
 	else if (x < 0)
 	{
-		x = game->getCols() - 1;
+		x = pState->getCols() - 1;
 	}
 	if (y < 0)
 	{
-		y = game->getRows() - 1;
+		y = pState->getRows() - 1;
 	}
-	else if (y >= game->getRows())
+	else if (y >= pState->getRows())
 	{
 		y = 0;
 	}

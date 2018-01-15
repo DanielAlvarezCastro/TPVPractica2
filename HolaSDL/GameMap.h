@@ -5,10 +5,11 @@
 #include "checkML.h";
 #include <vector>
 #include "GameObject.h"
+#include "PacManObject.h"
 using namespace std;
 enum MapCell{ Empty, Wall, Food, Vitamins };
 class Game;
-class GameMap: public GameObject
+class GameMap: public PacManObject
 {
 	friend class Game;
 private:
@@ -25,8 +26,8 @@ public:
 	uint foods;
 	uint vitamins;
 	MapCell** cells;
-	GameMap(Game* dir, uint rows, uint cols);
-	GameMap(Game* dir);
+	GameMap(Game* dir, PlayState* pS, uint rows, uint cols);
+	GameMap(Game* dir, PlayState* pS);
 	~GameMap();
 	int getRows();
 	int getCols();

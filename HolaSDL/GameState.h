@@ -15,7 +15,7 @@ protected:
 	Game* game;
 public:
 	GameState(Game* g);
-	~GameState();
+	virtual ~GameState();
 	virtual void update() = 0;
 	virtual void render() = 0;
 	virtual void handleEvent(SDL_Event& e) = 0;

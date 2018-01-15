@@ -34,5 +34,7 @@ void EndState::handleEvent(SDL_Event& e)
 {
 	if (e.type == SDL_KEYDOWN)
 	{
+		SDL_Delay(1500);
+		game->quitEndScreen();
 	}
 }
