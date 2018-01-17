@@ -5,6 +5,7 @@
 #include "Texture.h"
 #include "SDL_ttf.h"
 #include "GameState.h"
+#include "MenuButton.h"
 class MainMenuState: public GameState
 {
 private:
@@ -14,6 +15,8 @@ private:
 	Texture* option1;
 	Texture* option2;
 	Texture* quit;
+
+	MenuButton* op1;
 
 	SDL_Rect bgPos;
 	SDL_Rect titlePos;
@@ -34,5 +37,7 @@ public:
 	void render();
 	void handleEvent(SDL_Event& e);
 	void update(){};
+	static void playState(Game* game);
+	static void saveMode(MainMenuState* mm);
 };
 

@@ -44,6 +44,10 @@ MainMenuState::MainMenuState(Game* g) : GameState(g)
 	{
 		cout << e.what() << endl;
 	}
+
+	op1 = new MenuButton(game, option1, optionPos,playState);
+
+	gameObjects.push_back(op1);
 }
 
 
@@ -69,7 +73,88 @@ void MainMenuState::render()
 }
 void MainMenuState::handleEvent(SDL_Event& e)
 {
-	if ((e.type == SDL_MOUSEBUTTONDOWN && !saving) || (e.type == SDL_KEYDOWN && saving))
+	if (!saving){
+		if (e.type == SDL_MOUSEBUTTONDOWN)
+		{
+			SDL_GetMouseState(&mouse.x, &mouse.y);
+			if (SDL_PointInRect(&mouse, &optionPos2))
+			{
+				saving = true;
+				titlePos.h = 100;
+				optionPos.y = 275;
+				title->loadFromText(game->renderer, "Enter save code", menuFont, yellow);
+				option1->loadFromText(game->renderer, " ", menuFont, yellow);
+				option1->render(game->renderer, optionPos);
+				option2->loadFromText(game->renderer, "Press Enter", menuFont, yellow);
+			}
+			for (int i = 0; i < gameObjects.size(); i++)
+			{
+				gameObjects[i]->handleEvent(e);
+			}
+		}
+	}
+	else
+		{
+			if (e.type == SDL_KEYDOWN)
+			{
+				if (e.key.keysym.sym == SDLK_0){
+					codeN += "0";
+				}
+				else if (e.key.keysym.sym == SDLK_1){
+					codeN += "1";
+				}
+				else if (e.key.keysym.sym == SDLK_2){
+					codeN += "2";
+				}
+				else if (e.key.keysym.sym == SDLK_3){
+					codeN += "3";
+				}
+				else if (e.key.keysym.sym == SDLK_4){
+					codeN += "4";
+				}
+				else if (e.key.keysym.sym == SDLK_5){
+					codeN += "5";
+				}
+				else if (e.key.keysym.sym == SDLK_6){
+					codeN += "6";
+				}
+				else if (e.key.keysym.sym == SDLK_7){
+					codeN += "7";
+				}
+				else if (e.key.keysym.sym == SDLK_8){
+					codeN += "8";
+				}
+				else if (e.key.keysym.sym == SDLK_9){
+					codeN += "9";
+				}
+				else if (e.key.keysym.sym == SDLK_RETURN)
+				{
+					try{
+						ifstream f("..\\saves\\" + codeN + ".pac");
+						if (f.good()){
+							game->playLoad(codeN);
+						}
+						else
+						{
+							throw FileNotFoundError(codeN);
+						}
+					}
+					catch (FileNotFoundError& e)
+					{
+						cout << e.what() << endl;
+						codeN = " ";
+					}
+				}
+				try{
+					option1->loadFromText(game->renderer, codeN, menuFont, yellow);
+				}
+				catch (SDLError& e)
+				{
+					cout << e.what() << endl;
+				}
+			}
+		}
+	/*if ((e.type == SDL_MOUSEBUTTONDOWN && !saving) || (e.type == SDL_KEYDOWN && saving))
 	{
 		if (!saving)
 		{
@@ -152,5 +237,11 @@ void MainMenuState::handleEvent(SDL_Event& e)
 				cout << e.what() << endl;
 			}
 		}
-	}
+	}*/
 }
+
+void MainMenuState::playState(Game* game)
+{
+	game->playState();
+}
+

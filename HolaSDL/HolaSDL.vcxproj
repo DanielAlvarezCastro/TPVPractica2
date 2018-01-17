@@ -76,6 +76,7 @@
     <ClCompile Include="Ghost.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
+    <ClCompile Include="MenuButton.cpp" />
     <ClCompile Include="Pacman.cpp" />
     <ClCompile Include="PacManObject.cpp" />
     <ClCompile Include="PauseState.cpp" />
@@ -98,6 +99,7 @@
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="Ghost.h" />
     <ClInclude Include="MainMenuState.h" />
+    <ClInclude Include="MenuButton.h" />
     <ClInclude Include="Pacman.h" />
     <ClInclude Include="PacManError.h" />
     <ClInclude Include="PacManObject.h" />

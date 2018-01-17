@@ -6,8 +6,17 @@ class EndState: public GameState
 private:
 	Texture* gameOverText;
 	Texture* gameWonText;
+	Texture* quit;
+	Texture* quit2;
 	SDL_Rect windowRect;
 	bool win;
+
+	SDL_Rect quitB;
+	SDL_Rect quitB2;
+
+	Font* menuFont;
+	SDL_Color yellow;
+	SDL_Point mouse;
 public:
 	EndState(Game* g, bool w);
 	~EndState();

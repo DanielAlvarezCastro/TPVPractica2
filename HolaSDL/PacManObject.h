@@ -11,5 +11,6 @@ public:
 	~PacManObject();
 	virtual void saveToFile(ofstream& archivo) = 0;
 	virtual void loadFromFile(ifstream& archivo) = 0;
+	void handleEvent(SDL_Event& e){};
 };
 

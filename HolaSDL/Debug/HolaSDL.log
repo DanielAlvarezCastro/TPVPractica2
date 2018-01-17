@@ -1,34 +1,8 @@
-﻿Build started 17/01/2018 16:30:08.
-     1>Project "C:\hlocal\TPVPractica2-3\HolaSDL\HolaSDL.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\software\programacion\MSVStudio2013\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt PauseState.cpp
-         PauseState.cpp
-     1>c:\hlocal\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-     1>c:\hlocal\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-     1>c:\hlocal\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-     1>c:\hlocal\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-     1>c:\hlocal\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-       Link:
-         C:\software\programacion\MSVStudio2013\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\hlocal\TPVPractica2-3\bin\HolaSDLDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\hlocal\TPVPractica2-3\bin\HolaSDLDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\hlocal\TPVPractica2-3\bin\HolaSDLDebug.lib" /MACHINE:X86 Debug\EndState.obj
-         Debug\Game.obj
-         Debug\GameCharacter.obj
-         Debug\GameMap.obj
-         Debug\GameObject.obj
-         Debug\GameState.obj
-         Debug\GameStateMachine.obj
-         Debug\Ghost.obj
-         Debug\main.obj
-         Debug\MainMenuState.obj
-         Debug\Pacman.obj
-         Debug\PacManObject.obj
-         Debug\PauseState.obj
-         Debug\PlayState.obj
-         Debug\SmartGhost.obj
-         Debug\Texture.obj
-         Debug\UserInterface.obj
-         HolaSDL.vcxproj -> C:\hlocal\TPVPractica2-3\bin\HolaSDLDebug.exe
-     1>Done Building Project "C:\hlocal\TPVPractica2-3\HolaSDL\HolaSDL.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:00.83
+﻿  MainMenuState.cpp
+c:\hlocal\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\hlocal\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\hlocal\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\hlocal\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\hlocal\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\hlocal\tpvpractica2-3\holasdl\mainmenustate.cpp(90): warning C4018: '<' : signed/unsigned mismatch
+  HolaSDL.vcxproj -> C:\hlocal\TPVPractica2-3\bin\HolaSDLDebug.exe

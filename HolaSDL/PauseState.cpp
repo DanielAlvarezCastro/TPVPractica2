@@ -47,6 +47,7 @@ PauseState::~PauseState()
 	delete saveText;
 	delete saveCode;
 	delete screenFont;
+	delete quit;
 }
 void PauseState::handleEvent(SDL_Event& e)
 {
