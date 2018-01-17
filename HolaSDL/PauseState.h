@@ -11,9 +11,12 @@ private:
 	SDL_Rect spanelPos;
 	SDL_Rect stextPos;
 	SDL_Rect scodePos;
+	Texture* quit;
+	SDL_Rect quitB;
 
 	SDL_Color white;
 	Font* screenFont;
+	SDL_Point mouse;
 
 
 public:

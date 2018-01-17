@@ -49,6 +49,7 @@ MainMenuState::MainMenuState(Game* g) : GameState(g)
 
 MainMenuState::~MainMenuState()
 {
+	delete quit;
 	delete backGround;
 	delete title;
 	delete option1;

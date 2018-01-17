@@ -58,6 +58,6 @@ public:
 	void resume();
 	void saveResume(string filename);
 	void endScreen(bool win);
-	void quitEndScreen();
+	void returnToMenu();
 };
 

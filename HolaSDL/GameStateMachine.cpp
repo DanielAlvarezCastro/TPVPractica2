@@ -8,6 +8,12 @@ GameStateMachine::GameStateMachine()
 
 GameStateMachine::~GameStateMachine()
 {
+	while (!stateStack.empty())
+	{
+		GameState* gs = stateStack.top();
+		stateStack.pop();
+		delete gs;
+	}
 }
 
 GameState* GameStateMachine::currentState()
@@ -33,3 +39,4 @@ void GameStateMachine::changeState(GameState* ge)
 	delete gs;
 	pushState(ge);
 }
+

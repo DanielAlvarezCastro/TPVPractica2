@@ -7,14 +7,21 @@ PauseState::PauseState(Game* g):GameState(g)
 	saveCode = new Texture();
 	saveText = new Texture();
 	savePanel = new Texture();
+	quit = new Texture();
 	screenFont = new Font("..\\fonts\\Kiloton v1.0.ttf", 50);
 	savePanel->load(game->renderer, "..\\images\\bluePanel.png", 1, 1);
 	saveText->loadFromText(game->renderer, "Create save code", screenFont, white);
+	quit->loadFromText(game->renderer, "Main Menu", screenFont, white);
 
 	white.a = 255;
 	white.g = 255;
 	white.b = 255;
 	white.r = 255;
+
+	quitB.h = 50;
+	quitB.w = 100;
+	quitB.x = 650;
+	quitB.y = 500;
 
 	spanelPos.h = 200;
 	stextPos.h = 50;
@@ -96,6 +103,15 @@ void PauseState::handleEvent(SDL_Event& e)
 
 
 	}
+	else if (e.type == SDL_MOUSEBUTTONDOWN)
+	{
+		SDL_GetMouseState(&mouse.x, &mouse.y);
+		if (SDL_PointInRect(&mouse, &quitB))
+		{
+			game->returnToMenu();
+		}
+
+	}
 }
 
 void PauseState::render()
@@ -103,4 +119,5 @@ void PauseState::render()
 	savePanel->render(game->renderer, spanelPos);
 	saveText->render(game->renderer, stextPos);
 	saveCode->render(game->renderer, scodePos);
+	quit->render(game->renderer, quitB);
 }

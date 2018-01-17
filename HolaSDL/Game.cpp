@@ -27,6 +27,7 @@ Game::Game()
 }
 Game::~Game()
 {
+	delete stateMachine;
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
@@ -89,7 +90,7 @@ void Game::endScreen(bool win)
 	stateMachine->pushState(es);
 }
 
-void Game::quitEndScreen()
+void Game::returnToMenu()
 {
 	GameState* es = stateMachine->popState();
 	delete es;
