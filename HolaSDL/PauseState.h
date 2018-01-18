@@ -1,6 +1,7 @@
 #pragma once
 #include "GameState.h"
 #include "Texture.h"
+#include "MenuButton.h"
 class PauseState:public GameState
 {
 private:
@@ -14,6 +15,8 @@ private:
 	Texture* quit;
 	SDL_Rect quitB;
 
+	MenuButton* goMenu;
+
 	SDL_Color white;
 	Font* screenFont;
 	SDL_Point mouse;
@@ -25,5 +28,6 @@ public:
 	void handleEvent(SDL_Event& e);
 	void render();
 	void update(){};
+	static void menu(Game* game);
 };
 

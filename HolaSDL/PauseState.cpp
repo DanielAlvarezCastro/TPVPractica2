@@ -38,6 +38,9 @@ PauseState::PauseState(Game* g):GameState(g)
 	spanelPos.y = 200;
 	stextPos.y = 220;
 	scodePos.y = 300;
+
+	goMenu = new MenuButton(game, quit, quitB, menu);
+	gameObjects.push_back(goMenu);
 }
 
 
@@ -48,6 +51,7 @@ PauseState::~PauseState()
 	delete saveCode;
 	delete screenFont;
 	delete quit;
+	delete goMenu;
 }
 void PauseState::handleEvent(SDL_Event& e)
 {
@@ -106,12 +110,11 @@ void PauseState::handleEvent(SDL_Event& e)
 	}
 	else if (e.type == SDL_MOUSEBUTTONDOWN)
 	{
-		SDL_GetMouseState(&mouse.x, &mouse.y);
-		if (SDL_PointInRect(&mouse, &quitB))
-		{
-			game->returnToMenu();
-		}
 
+		for (int i = 0; i < gameObjects.size(); i++)
+		{
+			gameObjects[i]->handleEvent(e);
+		}
 	}
 }
 
@@ -121,4 +124,9 @@ void PauseState::render()
 	saveText->render(game->renderer, stextPos);
 	saveCode->render(game->renderer, scodePos);
 	quit->render(game->renderer, quitB);
+}
+
+void PauseState::menu(Game* game)
+{
+	game->returnToMenu();
 }

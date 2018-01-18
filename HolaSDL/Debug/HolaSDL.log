@@ -1,8 +1,146 @@
-﻿  MainMenuState.cpp
-c:\hlocal\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\hlocal\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\hlocal\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\hlocal\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\hlocal\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\hlocal\tpvpractica2-3\holasdl\mainmenustate.cpp(90): warning C4018: '<' : signed/unsigned mismatch
-  HolaSDL.vcxproj -> C:\hlocal\TPVPractica2-3\bin\HolaSDLDebug.exe
+﻿Build started 18/01/2018 20:27:18.
+     1>Project "C:\Users\Daniel\Desktop\Trabajos\TPVPractica2-3\HolaSDL\HolaSDL.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt EndState.cpp Game.cpp GameCharacter.cpp GameMap.cpp GameObject.cpp GameState.cpp Ghost.cpp MainMenuState.cpp MenuButton.cpp Pacman.cpp PauseState.cpp PlayState.cpp SmartGhost.cpp UserInterface.cpp main.cpp
+         main.cpp
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         UserInterface.cpp
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         SmartGhost.cpp
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         PlayState.cpp
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\playstate.cpp(85): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\playstate.cpp(199): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\playstate.cpp(236): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\playstate.cpp(279): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\playstate.cpp(289): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\playstate.cpp(309): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\playstate.cpp(311): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\playstate.cpp(356): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\playstate.cpp(396): warning C4018: '<' : signed/unsigned mismatch
+         Pacman.cpp
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         MenuButton.cpp
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         MainMenuState.cpp
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\mainmenustate.cpp(95): warning C4018: '<' : signed/unsigned mismatch
+         Ghost.cpp
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\ghost.cpp(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\ghost.cpp(9): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\ghost.cpp(16): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+         GameState.cpp
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         GameObject.cpp
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         GameMap.cpp
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.cpp(13): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.cpp(29): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.cpp(68): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.cpp(70): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.cpp(108): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.cpp(110): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.cpp(143): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.cpp(149): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.cpp(151): warning C4018: '<' : signed/unsigned mismatch
+         GameCharacter.cpp
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         Game.cpp
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+         EndState.cpp
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\endstate.cpp(68): warning C4018: '<' : signed/unsigned mismatch
+         Generating Code...
+         Compiling...
+         PauseState.cpp
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\texture.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\gamemap.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\userinterface.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\pacman.h(5): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\game.h(14): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\daniel\desktop\trabajos\tpvpractica2-3\holasdl\pausestate.cpp(114): warning C4018: '<' : signed/unsigned mismatch
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Daniel\Desktop\Trabajos\TPVPractica2-3\bin\HolaSDLDebug.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Daniel\Desktop\Trabajos\TPVPractica2-3\bin\HolaSDLDebug.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Daniel\Desktop\Trabajos\TPVPractica2-3\bin\HolaSDLDebug.lib" /MACHINE:X86 Debug\EndState.obj
+         Debug\Game.obj
+         Debug\GameCharacter.obj
+         Debug\GameMap.obj
+         Debug\GameObject.obj
+         Debug\GameState.obj
+         Debug\GameStateMachine.obj
+         Debug\Ghost.obj
+         Debug\main.obj
+         Debug\MainMenuState.obj
+         Debug\MenuButton.obj
+         Debug\Pacman.obj
+         Debug\PacManObject.obj
+         Debug\PauseState.obj
+         Debug\PlayState.obj
+         Debug\SmartGhost.obj
+         Debug\Texture.obj
+         Debug\UserInterface.obj
+         HolaSDL.vcxproj -> C:\Users\Daniel\Desktop\Trabajos\TPVPractica2-3\bin\HolaSDLDebug.exe
+     1>Done Building Project "C:\Users\Daniel\Desktop\Trabajos\TPVPractica2-3\HolaSDL\HolaSDL.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:08.86

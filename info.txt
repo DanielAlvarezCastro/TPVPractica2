@@ -1,5 +1,2 @@
 Daniel Álvarez Castro
 Gabriel Aramis Sardaneta del Collado
-
-Funcionalidades adicionales:
-Uso de la librería ttf para la interfaz.

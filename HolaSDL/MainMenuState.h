@@ -17,6 +17,7 @@ private:
 	Texture* quit;
 
 	MenuButton* op1;
+	MenuButton* exit;
 
 	SDL_Rect bgPos;
 	SDL_Rect titlePos;
@@ -38,6 +39,6 @@ public:
 	void handleEvent(SDL_Event& e);
 	void update(){};
 	static void playState(Game* game);
-	static void saveMode(MainMenuState* mm);
+	static void exitGame(Game* game);
 };
 

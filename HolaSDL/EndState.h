@@ -1,5 +1,6 @@
 #pragma once
 #include "GameState.h"
+#include "MenuButton.h"
 
 class EndState: public GameState
 {
@@ -14,6 +15,9 @@ private:
 	SDL_Rect quitB;
 	SDL_Rect quitB2;
 
+	MenuButton* exit;
+	MenuButton* menu;
+
 	Font* menuFont;
 	SDL_Color yellow;
 	SDL_Point mouse;
@@ -23,5 +27,7 @@ public:
 	void render();
 	void handleEvent(SDL_Event& e);
 	void update(){};
+	static void goMenu(Game* game);
+	static void exitGame(Game* game);
 };
 

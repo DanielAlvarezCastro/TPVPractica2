@@ -31,6 +31,11 @@ EndState::EndState(Game* g, bool w) : GameState(g)
 	windowRect.x = windowRect.y = 0;
 	windowRect.w = game->getWinW();
 	windowRect.h = game->getWinH();
+
+	menu = new MenuButton(game, quit2, quitB2, goMenu);
+	exit = new MenuButton(game, quit, quitB, exitGame);
+	gameObjects.push_back(menu);
+	gameObjects.push_back(exit);
 }
 
 
@@ -41,6 +46,8 @@ EndState::~EndState()
 	delete quit;
 	delete quit2;
 	delete menuFont;
+	delete menu;
+	delete exit;
 }
 
 void EndState::render()
@@ -60,14 +67,18 @@ void EndState::handleEvent(SDL_Event& e)
 {
 	if (e.type == SDL_MOUSEBUTTONDOWN)
 	{
-		SDL_GetMouseState(&mouse.x, &mouse.y);
-		if (SDL_PointInRect(&mouse, &quitB))
+		for (int i = 0; i < gameObjects.size(); i++)
 		{
-			game->exit = true;
-		}
-		else if (SDL_PointInRect(&mouse, &quitB2))
-		{
-			game->returnToMenu();
+			gameObjects[i]->handleEvent(e);
 		}
 	}
+		
+}
+void EndState::goMenu(Game* game)
+{
+	game->returnToMenu();
+}
+void EndState::exitGame(Game* game)
+{
+	game->exit = true;
 }
